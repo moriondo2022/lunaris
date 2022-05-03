@@ -8,6 +8,7 @@ h1 {
     padding: 10px;
     font-weight: normal;
     display: inline;
+    vertical-align: middle;
 }
 
 header {
@@ -16,16 +17,30 @@ header {
     padding: 20px;
 }
 
+#eggserverLogo {
+    height: 60px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 #lunarisLogo{
-    height: 45px;
-    width: 45px;
+    padding-left: 5px;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    float: right;
+    vertical-align: middle;
+}
+
+#lunarisBranding{
+    padding-top: 9px;
     display: inline-block;
     float: right;
 }
-
 #lunarisHeader {
     display: inline-block;
-    float: right;
+    padding-top: 4px;
+    font-size: smaller;
 }
 
 #lunarisHeader span {
