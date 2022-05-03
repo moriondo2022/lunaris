@@ -20,15 +20,17 @@
         <!--Bolded initials to emphasize "EGG."-->
         <strong>E</strong>xome <strong>G</strong>ene-level <strong>G</strong>roup-file Server
     </h1>
-    <div id=lunarisBranding>
-    <div id=lunarisHeader>
+    <div id="lunarisBranding">
+    <div id="lunarisHeader">
         <span>Powered by</span> <span>Lunaris</span> 
     </div>
         <img id="lunarisLogo" src="lunaris_logo.svg" alt="Lunaris logo"/>
     </div>
     
 </header>
-
+    
+    <div class = "panel" id="paneltop>">
+    <div id="explainer">
     <p>The <strong>Exome Gene-Level Group-File Generator</strong> is designed to, based on a user-provided location-sorted list of exome
     variants, annotate variants using the
     <a href="https://www.ensembl.org/info/docs/tools/vep/index.html" target="_blank"
@@ -36,9 +38,9 @@
     and generate group files to run gene-level association tests using rareMETALS or EPACTS format.
     Users can define masks based on annotations, or use one of the
     <a href="https://www.nature.com/articles/s41586-019-1231-2" target="_blank"
-       rel="noopener noreferrer">published masks provided</a>.</p>
+       rel="noopener noreferrer">published masks provided</a>.<!--/p>
 
-<p> To download group files for UK BioBank 50k Exome release (2019), click
+<p--> To download group files for UK BioBank 50k Exome release (2019), click
     <a
     href="https://storage.googleapis.com/eggserver-data/examples/output/UKBBw1.ALL.variant.groupfiles.raremetals.tar"
     download="UKBBw1.ALL.variant.groupfiles.raremetals.tar">here</a>
@@ -47,6 +49,14 @@
     href="https://storage.googleapis.com/eggserver-data/examples/output/UKBBw1.ALL.variant.groupfiles.epacts.tar"
     download="UKBBw1.ALL.variant.groupfiles.epacts.tar">here</a>
     for EPACTS format.</p>
+    </div>
+    <div id="statuschecker">
+            <h3>Check status</h3>
+            <label for="sessioninput">Session ID</label>
+            <input type="text" id="sessioninput" name="sessioninput" required size="8">
+            <button onclick="promptAndLoadSession()">Load</button>
+    </div>
+    </div>
 
 <p>
     <span class="stepNumber">1.</span>
