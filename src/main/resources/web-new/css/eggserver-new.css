@@ -115,12 +115,18 @@ a {
 
 .paneltab{
     margin: 10px;
-    border: #DADAD4 solid 1px;
-    border-radius: 7px;
+    border-left: #DADAD4 solid 1px;
+    border-right: #DADAD4 solid 1px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;*/
 }
 
 .tabtop{
     background: #EFEFEC;
+    border-top: #DADAD4 solid 1px;
+    border-bottom: #DADAD4 solid 1px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     padding: 10px;
 }
 
