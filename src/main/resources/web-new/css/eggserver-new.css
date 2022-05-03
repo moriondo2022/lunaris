@@ -59,18 +59,24 @@ a {
 .panel {
     background-color: white;
     display: flex;
+    margin: 10px;
 }
 
-#explainer {
-    display: inherit;
-    flex: 2;
-}
-
-#explainer p {
+#paneltop div {
     display: block;
 }
 
+#explainer {
+    font-size: larger;
+    margin: 20px;
+    padding-right: 20px;
+    flex: 3;
+    border-right: #92928E solid 1px;
+}
+
 #statuschecker {
-    display: inherit;
+    padding: 20px;
+    display: inline-block;
+    float: right;
     flex: 1;
 }
