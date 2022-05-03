@@ -112,28 +112,28 @@
                 <li>Start with a pre-defined mask as a template and edit it.</li>
                 <li>Start building from scratch by typing in the editor.</li>
             </ol>
+            <!-- This ought to be done with Vue. toggle seen -->
+            <div id="mask-subtabs">
+                <div id="mask-tabtop">
+                    <label><button id="load-mask" onclick="setPredefinedMask()">Load predefined mask</button></label>
+                    <label><button id="fields-operators">Fields & operators</button></label>
+                </div>
+                <div id=mask-main>
+                    <label for="masks">Mask</label>
+                    <select name="masks" id="masks">
+                        <option value="0of5_1pct">0of5_1pct</option>
+                    </select>
+                </div>
+            </div>
+            <div id="clear-mask">
+                    <label><button onclick="resetFilters()">Clear Mask</button></label>
+            </div>
+            <p id="code_mirror_parent"></p>
         </div>
     </div>
 
+<p>
 
-<p>
-    <span class="stepNumber">2a.</span>
-    If preferred, select a predefined variant mask
-    <span>
-        <button onclick="resetFilters()">Clear mask</button>
-        <label><button onclick="setPredefinedMask()">Load predefined mask</button></label>
-        <label><select name="masks" id="masks"></select></label>
-    </span>
-</p>
-<p>
-    <span class="stepNumber">2b.</span>
-    If a custom variant group mask is preferred, manually edit text box below.
-</p>
-<p>
-    To edit masks: Enclose field names in backticks. Backticks can be omitted if field name contains no whitespace and
-    starts with letter or underscore and contains only letters, digits and underscores. Enclose string values in
-    double-quotes. Using field tests written as name-operator-value (e.g. REF == "A"), build Boolean expressions using
-    AND, OR and parentheses.
     <label>Available fields:<select name="fields" id="fields"></select></label>.
     <label>Available operators:
     <select name="operators" id="operators">
@@ -150,7 +150,7 @@
     </select></label>
     Check out predefined masks as examples.
 </p>
-<p id="code_mirror_parent"></p>
+
 
 <p>
     <span class="stepNumber">3.</span>
