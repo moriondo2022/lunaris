@@ -60,6 +60,8 @@ a {
     background-color: white;
     display: flex;
     margin: 10px;
+    border: #DADAD4 solid 1px;
+    border-radius: 7px;
 }
 
 #paneltop div {
@@ -72,11 +74,39 @@ a {
     padding-right: 20px;
     flex: 3;
     border-right: #92928E solid 1px;
+    line-height: 1.5;
 }
 
 #statuschecker {
-    padding: 20px;
+    padding: 20px;/
     display: inline-block;
     float: right;
+    text-align: center;
     flex: 1;
+}
+
+#statuschecker label {
+    font-size: larger;
+    display: block;
+    font-weight: bold;
+}
+
+#statuschecker input {
+    font-size: larger;
+    width: 50%;
+    height: 1.75em;
+    border: #D9DBDC solid 1px;
+    border-radius: 5px;
+}
+
+#statuschecker button {
+    display: block;
+    width: 40%;
+    background-color: #5783B4;
+    color: white;
+    height: 1.5em;
+    font-size: larger;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
 }
