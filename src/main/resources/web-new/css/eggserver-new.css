@@ -121,6 +121,10 @@ label {/*
     border-top-right-radius: 7px;*/
 }
 
+.paneltab p {
+    margin-left: 20px;
+}
+
 .tabtop{
     background: #EFEFEC;
     border-top: #DADAD4 solid 1px;
@@ -139,12 +143,12 @@ label {/*
     display: block;
 }
 
-#source-info {
+.source-info {
     display: inline;
     float: right;
 }
 
-#source-info span {
+.source-info span {
     float: left;
     padding: 2px;
     color: white;
@@ -152,7 +156,7 @@ label {/*
     font-size: smaller;
     margin-left: 5px;
     margin-right: 5px;
-    width: 80px;
+    min-width: 80px;
     text-align: center;
 }
 
@@ -162,6 +166,10 @@ label {/*
 
 #ref-genome {
     background: #CA4842;
+}
+
+#output-format{
+    background: #4E5E98;
 }
 
 #upload-instructions {
@@ -185,9 +193,5 @@ label {/*
 
 #createjob h4{
     margin-left: 20px;
-    margin-bottom: 5px;
-}
-
-#createjob ul {
-    margin-top: 5px;
+    margin-bottom: 0px;
 }

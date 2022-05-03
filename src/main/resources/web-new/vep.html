@@ -61,9 +61,9 @@
     <div class="panel" id="createjob">
         <h2 class="panelheading">Create job</h2>
         <div class="paneltab">
-            <div class ="tabtop">
+            <div class="tabtop">
                 <h3 class="tabheading"><a>Source file</a></h3>
-                <span id="source-info">
+                <span class="source-info">
                     <span id="data-filename">File name</span> <span id="ref-genome">hg19</span>
                 </span>
             </div>
@@ -92,6 +92,26 @@
                 <li>At least first five columns of what(?)</li>
                 <li>Download example input file: <a href="predictor/sample_input.vcf" download="sample_input.vcf">sample_input.vcf</a></li>
             </ul>
+        </div>
+        <div class="paneltab">
+            <div class="tabtop">
+                <h3 class="tabheading"><a>Mask</a></h3>
+                <span class="source-info">
+                    <span id="output-format">output format</span>
+                </span>
+            </div>
+            <ul>
+                <li>Enclose field names in backticks.</li>
+                <li>Backticks may be omitted if field name contains no whitespace; starts with letter or underscore; and contains only letters, digits and underscores.</li>
+                <li>Enclose string values in double-quotes.</li>
+                <li>Using field tests written as name-operator-value (e.g. REF == "A"), build Boolean expressions using AND, OR and parentheses.</li>
+            </ul>
+            <p>You can:</p>
+            <ol>
+                <li>Use a pre-defined mask.</li>
+                <li>Start with a pre-defined mask as a template and edit it.</li>
+                <li>Start building from scratch by typing in the editor.</li>
+            </ol>
         </div>
     </div>
 
