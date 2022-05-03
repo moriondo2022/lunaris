@@ -53,7 +53,7 @@
         <div id="statuschecker">
             <h2>Check status</h2>
             <label for="sessioninput">Session ID</label>
-            <input type="text" id="sessioninput" name="sessioninput" required size="8">
+            <input type="text" id="sessioninput" name="sessioninput" size="8">
             <button onclick="promptAndLoadSession()">Load</button>
                 
         </div>
@@ -70,24 +70,31 @@
             <div id="upload-instructions">
                 Please upload a data file and select a reference genome to be used
             </div>
-      
+            
+            <div id="job-inputs">
+                
+                <div id="file-chooser">
+                    <label for="myfile">Upload a file</label>
+                    <input type="file" id="inputfile" name="myfile">
+                </div>
+                <div id="genome-chooser">
+                    <label for="hg">Reference Genome</label>
+                    <select name="hg" id="hg">
+                        <option>hg19</option>
+                        <option>hg38</option>
+                    </select>
+                </div>
+            </div>
+        <h4>Requirements</h4>
+            <ul>
+                <li>File must be formatted in VCF format</li>
+                <li>Data must be sorted by location</li>
+                <li>At least first five columns of what(?)</li>
+                <li>Download example input file: <a href="predictor/sample_input.vcf" download="sample_input.vcf">sample_input.vcf</a></li>
+            </ul>
         </div>
     </div>
 
-
-<p>
-    <span class="stepNumber">1.</span>
-    <label for="inputfile">
-        As a variant site list to upload on submit, select a location-sorted VCF with at least the first five columns
-        (for an example input VCF file, click
-        <a href="predictor/sample_input.vcf" download="sample_input.vcf">here</a>):
-    </label>
-    <select name="hg" id="hg">
-        <option>hg19</option>
-        <option>hg38</option>
-    </select>
-    <input type="file" id="inputfile" name="myfile">
-</p>
 
 <p>
     <span class="stepNumber">2a.</span>

@@ -81,8 +81,8 @@ a {
     flex: 1;
 }
 
-#statuschecker label {
-    font-size: larger;
+label {/*
+    font-size: larger;*/
     display: block;
     font-weight: bold;
 }
@@ -109,12 +109,12 @@ a {
 }
 
 .panelheading {
-    padding: 20px;
+    padding-left: 20px;
     font-size: 1.75em;
 }
 
 .paneltab{
-    margin: 10px;
+    margin: 20px;
     border-left: #DADAD4 solid 1px;
     border-right: #DADAD4 solid 1px;
     border-top-left-radius: 7px;
@@ -172,4 +172,22 @@ a {
     color: #4589BB;
     border-radius: 7px;
     text-align: center;
+}
+
+#job-inputs {
+    margin: 20px;
+    background: #EFEFEC;
+    border: #DADAD4 solid 1px;
+    border-radius: 7px;
+    padding: 10px;
+    display: flex;
+}
+
+#createjob h4{
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+#createjob ul {
+    margin-top: 5px;
 }
