@@ -7,22 +7,31 @@ body, button, textarea {
 h1 {
     padding: 10px;
     font-weight: normal;
-    text-align: left;
+    display: inline;
 }
 
 header {
     background-color: #4795CF;
     color: white;
+    padding: 20px;
 }
 
 #lunarisLogo{
-    height: 57px;
+    height: 45px;
+    width: 45px;
+    display: inline-block;
+    float: right;
 }
 
 #lunarisHeader {
-    align-items: right;
+    display: inline-block;
+    float: right;
 }
 
+#lunarisHeader span {
+    display: block;
+    text-align: right;
+}
 .stepNumber {
     font-size: large;
     color: green;
