@@ -29,7 +29,7 @@
     
 </header>
     
-    <div class = "panel" id="paneltop>">
+    <div class="panel" id="paneltop>">
     <div id="explainer">
     <p>The <strong>Exome Gene-Level Group-File Generator</strong> is designed to, based on a user-provided location-sorted list of exome
     variants, annotate variants using the
@@ -40,7 +40,7 @@
     <a href="https://www.nature.com/articles/s41586-019-1231-2" target="_blank"
        rel="noopener noreferrer">published masks provided</a>.</p>
 
-<p> To download group files for UK BioBank 50k Exome release (2019), click
+    <p> To download group files for UK BioBank 50k Exome release (2019), click
     <a
     href="https://storage.googleapis.com/eggserver-data/examples/output/UKBBw1.ALL.variant.groupfiles.raremetals.tar"
     download="UKBBw1.ALL.variant.groupfiles.raremetals.tar">here</a>
@@ -50,17 +50,30 @@
     download="UKBBw1.ALL.variant.groupfiles.epacts.tar">here</a>
     for EPACTS format.</p>
     </div>
-    <div id="statuschecker">
-            
+        <div id="statuschecker">
             <h2>Check status</h2>
-            <div>
-            <!--h3>Session ID</h3-->
             <label for="sessioninput">Session ID</label>
             <input type="text" id="sessioninput" name="sessioninput" required size="8">
             <button onclick="promptAndLoadSession()">Load</button>
-                </div>
+                
         </div>
     </div>
+    <div class="panel" id="createjob">
+        <h2 class="panelheading">Create job</h2>
+        <div class="paneltab">
+            <div class ="tabtop">
+                <h3 class="tabheading"><a>Source file</a></h3>
+                <span id="source-info">
+                    <span id="data-filename">File name</span> <span id="ref-genome">hg19</span>
+                </span>
+            </div>
+            <div id="upload-instructions">
+                Please upload a data file and select a reference genome to be used
+            </div>
+      
+        </div>
+    </div>
+
 
 <p>
     <span class="stepNumber">1.</span>

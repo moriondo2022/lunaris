@@ -64,10 +64,6 @@ a {
     border-radius: 7px;
 }
 
-#paneltop div {
-    display: block;
-}
-
 #explainer {
     font-size: larger;
     margin: 20px;
@@ -110,4 +106,64 @@ a {
     border: none;
     border-radius: 5px;
     margin-top: 20px;
+}
+
+.panelheading {
+    padding: 20px;
+    font-size: 1.75em;
+}
+
+.paneltab{
+    margin: 10px;
+    border: #DADAD4 solid 1px;
+    border-radius: 7px;
+}
+
+.tabtop{
+    background: #EFEFEC;
+    padding: 10px;
+}
+
+.tabheading{
+    display: inline;
+    font-weight: normal;
+}
+
+#createjob {
+    display: block;
+}
+
+#source-info {
+    display: inline;
+    float: right;
+}
+
+#source-info span {
+    float: left;
+    padding: 2px;
+    color: white;
+    border-radius: 9px;
+    font-size: smaller;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 80px;
+    text-align: center;
+}
+
+#data-filename {
+    background: #4E5E98;
+}
+
+#ref-genome {
+    background: #CA4842;
+}
+
+#upload-instructions {
+    margin: 20px;
+    background: #D5EAEB;
+    padding: 10px;
+    border: #A2BDD2 solid 1px;
+    color: #4589BB;
+    border-radius: 7px;
+    text-align: center;
 }
