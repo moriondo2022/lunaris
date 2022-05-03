@@ -1,0 +1,33 @@
+body, button, textarea {
+    background-color: white;
+    color: black;
+    font-family: Sans-Serif, sans-serif;
+}
+
+h1 {
+    padding: 10px;
+    font-weight: normal;
+    text-align: left;
+}
+
+header {
+    background-color: #4795CF;
+    color: white;
+}
+
+#lunarisLogo{
+    height: 57px;
+}
+
+#lunarisHeader {
+    align-items: right;
+}
+
+.stepNumber {
+    font-size: large;
+    color: green;
+}
+
+a {
+    color: #4795CF;
+}

@@ -2,24 +2,30 @@
 
 <head>
     <title>Exome Gene-level Group-File Server (Lunaris Version 3.5.3-RC2)</title>
-    <link rel="stylesheet" href="css/lunaris.css">
+    <link rel="stylesheet" href="css/eggserver-new.css">
     <script src="js/vep.js"></script>
     <script src="codemirror/lib/codemirror.js"></script>
     <link rel="stylesheet" href="codemirror/lib/codemirror.css">
     <script src="codemirror/mode/javascript/javascript.js"></script>
     <link rel="stylesheet" href="codemirror/theme/liquibyte.css">
+    <!-- Using Vue 2-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 
 <body onload="init()">
 <header>
     <h1>
-<img id="lunarisLogo" src="http://kp4cd.org/sites/default/files/lunaris/lunaris_logo_white.svg"
+        <!--Bolded initials to emphasize "EGG."-->
+        <strong>E</strong>xome <strong>G</strong>ene-level <strong>G</strong>roup-file Server
+    </h1>
+    <div>
+        Powered by Lunaris
+        <img id="lunarisLogo" src="http://kp4cd.org/sites/default/files/lunaris/lunaris_logo_white.svg"
          style="width: 80px" alt="Lunaris logo"/>
-        Exome Gene-level Group-File Server
-</h1>
+    </div>
 </header>
 
-<p>The Exome Gene-Level Group-File Generator is designed to, based on a user-provided location-sorted list of exome
+    <p>The <strong>Exome Gene-Level Group-File Generator</strong> is designed to, based on a user-provided location-sorted list of exome
     variants, annotate variants using the
     <a href="https://www.ensembl.org/info/docs/tools/vep/index.html" target="_blank"
        rel="noopener noreferrer">Ensembl Variant Effect Predictor (VEP)</a>
