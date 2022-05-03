@@ -97,11 +97,12 @@ a {
     height: 1.75em;
     border: #D9DBDC solid 1px;
     border-radius: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 
 #statuschecker button {
-    display: block;
-    width: 40%;
+    width: 50%;
     background-color: #5783B4;
     color: white;
     height: 1.5em;
