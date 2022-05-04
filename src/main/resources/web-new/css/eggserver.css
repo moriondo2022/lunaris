@@ -54,3 +54,7 @@ header {
 #statuschecker{
     border-left: #aaa 1px solid;
 }
+
+.mdkp-footer a {
+    color: white !important;
+}
