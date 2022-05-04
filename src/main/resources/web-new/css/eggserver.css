@@ -53,6 +53,22 @@ header {
 /*Instead of a divider column, doing this at the top.*/
 #statuschecker{
     border-left: #aaa 1px solid;
+    text-align: center;
+    display: inline-block;
+}
+
+#statuschecker h4 {
+    font-weight: bold;
+}
+
+#statuschecker label {
+    font-weight: bold;
+    display: block;
+}
+
+#statuschecker button{
+    display: block;
+    align-self: center;
 }
 
 .mdkp-footer a {
