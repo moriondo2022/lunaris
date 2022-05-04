@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mdkp-card dataset-page-header">
+        <div class="card mdkp-card">
             <div class="card-body">
                 <h4 class="card-title">Create job</h4>
                 <div role="tablist" class="accordion">
@@ -128,33 +128,60 @@
                             <li>Start with a pre-defined mask as a template and edit it.</li>
                             <li>Start building from scratch by typing in the editor.</li>
                         </ol>
-                        <div class="paneltab">
-                            <div id="mask-subtabs">
-                                <ul role="tablist" class="nav nav-tabs">
-                                    <li role="presentation" class="nav-item">
-                                        <a role="tab" aria-selected="true" aria-setsize="2" aria-posinset="1" aria-controls="__BVID__13" href="#" target="_self" class="nav-link active">
-                                            Load predefined mask
-                                        </a>
-                                    </li>
-                                    <li role="presentation" class="nav-item">
-                                        <a role="tab" tabindex="-1" aria-selected="false" aria-setsize="2" aria-posinset="2" href="#" target="_self" class="nav-link" id="__BVID__16___BV_tab_button__" aria-controls="__BVID__16">
-                                            Fields & operators
-                                        </a>
-                                    </li>
-                                </ul>
-                                
-                                <div id=mask-main>
-                                    <label for="masks">Mask</label>
-                                    <select name="masks" id="masks">
-                                        <option value="0of5_1pct">0of5_1pct</option>
-                                    </select>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="tabs" id="__BVID__12">
+                                    <div id="mask-subtabs">
+                                        <ul role="tablist" class="nav nav-tabs" id="__BVID__12__BV_tab_controls_">
+                                            <li role="presentation" class="nav-item">
+                                                <a role="tab" aria-selected="true" aria-setsize="2" aria-posinset="1" aria-controls="__BVID__13" href="#" target="_self" class="nav-link active">Load predefined mask</a>
+                                            </li>
+                                            <li role="presentation" class="nav-item">
+                                                <a role="tab" tabindex="-1" aria-selected="false" aria-setsize="2" aria-posinset="2" href="#" target="_self" class="nav-link" id="__BVID__16___BV_tab_button__" aria-controls="__BVID__16">Fields & operators</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content mt-3" id="__BVID__12__BV_tab_container_">
+                                        <div role="tabpanel" class="tabpane" id="__BVID__13">
+                                            <label for="masks">Mask</label>
+                                            <select name="masks" id="masks">
+                                                <option value="0of5_1pct">0of5_1pct</option>
+                                            </select>
+                                        </div>
+                                        <div role="tabpanel" class="tabpane" id="__BVID__16">
+                                            <label>Available fields:
+                                                <select name="fields" id="fields"></select>
+                                            </label>.
+                                            <label>Available operators:
+                                                <select name="operators" id="operators">
+                                                    <option>== (equals)</option>
+                                                    <option>!= (does not equal)</option>
+                                                    <option>~ (contains regex)</option>
+                                                    <option>!~ (does not contain regex)</option>
+                                                    <option>~= (matches regex)</option>
+                                                    <option>!~= (does not match regex)</option>
+                                                    <option>&lt; (less than)</option>
+                                                    <option>&le; (less or equal)</option>
+                                                    <option>&gt; (greater than)</option>
+                                                    <option>&ge; (greater or equal)</option>
+                                                </select>
+                                            </label>
+                                            Check out predefined masks as examples.
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="clear-mask">
-                                <label><button onclick="resetFilters()">Clear Mask</button></label>
-                            </div>
-                            <p id="code_mirror_parent"></p>
                         </div>
+                        <label><button onclick="resetFilters()">Clear Mask</button></label>
+                        <p id="code_mirror_parent"></p>
+                        <label>Output format
+                            <select name="formats" id="formats">
+                                <option value="rareMETALS">list/rareMETALS</option>
+                                <option value="EPACTS">EPACTS</option>
+                            </select>
+                        </label>
+                        <button>Save job</button>
+                        <button>Save job and create new job</button>
                     </div>
                     <div class="card mb-1">
                         <header role="tab" class="card-header p-1">
@@ -187,54 +214,19 @@
                 </div>
             </div>
         </div>
+        <div class="card mdkp-card">
+            <div class="card-body">
+                <h4 class="card-title">Status</h4>
+                <p>Session id is <b><span id="session_id_area"></span></b>.</p>
+                <p id="submission_area">
+                    <span id="statusUpdatesPlaceholder">Submit time & any information regarding the session</span>
+                </p>
+            </div>
+        </div>
     </div>
 </div>
-<p>
-
-    <label>Available fields:<select name="fields" id="fields"></select></label>.
-    <label>Available operators:
-    <select name="operators" id="operators">
-        <option>== (equals)</option>
-        <option>!= (does not equal)</option>
-        <option>~ (contains regex)</option>
-        <option>!~ (does not contain regex)</option>
-        <option>~= (matches regex)</option>
-        <option>!~= (does not match regex)</option>
-        <option>&lt; (less than)</option>
-        <option>&le; (less or equal)</option>
-        <option>&gt; (greater than)</option>
-        <option>&ge; (greater or equal)</option>
-    </select></label>
-    Check out predefined masks as examples.
-</p>
-
-
-<p>
-    <span class="stepNumber">3.</span>
-    <label>Select an output format
-    <select name="formats" id="formats">
-        <option value="rareMETALS">list/rareMETALS</option>
-        <option value="EPACTS">EPACTS</option>
-    </select></label>
-    and submit variant list to server
-    <button onclick="submit()">Submit</button> and wait for results to be calculated. Check for status updates below.
-</p>
-
-<p id="status_area"></p>
-
-<p>Session id is <b><span id="session_id_area"></span></b>.
-    <button onclick="promptAndLoadSession()">Load different session</button>
-</p>
-
-<p id="submission_area">
-    <span id="statusUpdatesPlaceholder">(Submission status updates will appear here)</span>
-</p>
-
-<hr>
-<p>
-    Powered by Lunaris Version 3.5.3-RC2. Copyright 2020-21 Broad Institute
-</p>
-
+<div class="container-fluid mdkp-footer">
+    <a>Powered by Lunaris Version 3.5.3-RC2. Copyright 2020-21 Broad Institute</a>
+</div>
 </body>
-
 </html>
