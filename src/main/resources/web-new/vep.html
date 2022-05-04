@@ -31,7 +31,8 @@
         </div>
     </header>
     
-<div id="eggserver">
+<div id="gait">
+    <!-- This is for eggserver, but uses same styling as GAIT-->
     <div class="container-fluid mdkp-body">
         <div class="card mdkp-card">
             <div class="row card-body">
@@ -109,50 +110,82 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-1"></div>
-                    <div class="card mb-1"></div>
-        <div class="paneltab">
-            <div class="tabtop">
-                <h3 class="tabheading"><a>Mask</a></h3>
-                <span class="source-info">
-                    <span id="output-format">output format</span>
-                </span>
+                    <div class="card mb-1">
+                        <header role="tab" class="card-header p-1">
+                            <button type="button" class="btn btn-outline-primary btn-block not-collapsed" aria-expanded="true" aria-controls="accordion-1">Mask
+                                <!--div class="criteria"></div-->
+                            </button>
+                        </header>
+                        <ul>
+                            <li>Enclose field names in backticks.</li>
+                            <li>Backticks may be omitted if field name contains no whitespace; starts with letter or underscore; and contains only letters, digits and underscores.</li>
+                            <li>Enclose string values in double-quotes.</li>
+                            <li>Using field tests written as name-operator-value (e.g. REF == "A"), build Boolean expressions using AND, OR and parentheses.</li>
+                        </ul>
+                        <p>You can:</p>
+                        <ol>
+                            <li>Use a pre-defined mask.</li>
+                            <li>Start with a pre-defined mask as a template and edit it.</li>
+                            <li>Start building from scratch by typing in the editor.</li>
+                        </ol>
+                        <div class="paneltab">
+                            <div id="mask-subtabs">
+                                <ul role="tablist" class="nav nav-tabs">
+                                    <li role="presentation" class="nav-item">
+                                        <a role="tab" aria-selected="true" aria-setsize="2" aria-posinset="1" aria-controls="__BVID__13" href="#" target="_self" class="nav-link active">
+                                            Load predefined mask
+                                        </a>
+                                    </li>
+                                    <li role="presentation" class="nav-item">
+                                        <a role="tab" tabindex="-1" aria-selected="false" aria-setsize="2" aria-posinset="2" href="#" target="_self" class="nav-link" id="__BVID__16___BV_tab_button__" aria-controls="__BVID__16">
+                                            Fields & operators
+                                        </a>
+                                    </li>
+                                </ul>
+                                
+                                <div id=mask-main>
+                                    <label for="masks">Mask</label>
+                                    <select name="masks" id="masks">
+                                        <option value="0of5_1pct">0of5_1pct</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="clear-mask">
+                                <label><button onclick="resetFilters()">Clear Mask</button></label>
+                            </div>
+                            <p id="code_mirror_parent"></p>
+                        </div>
+                    </div>
+                    <div class="card mb-1">
+                        <header role="tab" class="card-header p-1">
+                            <button type="button" class="btn btn-outline-primary btn-block not-collapsed" aria-expanded="true" aria-controls="accordion-1">Submit jobs 
+                                <!--div class="criteria"></div-->
+                            </button>
+                        </header>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Input file</td>
+                                    <td>Reference genome</td>
+                                    <td>Mask</td>
+                                    <td>Output format</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>file_name_1.vcf</td>
+                                    <td>hg19</td>
+                                    <td>Mask</td>
+                                    <td>list/rareMETAL</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <label for="email">E-mail to receive notification(optional)</label>
+                        <input type="email" name="email">
+                        <button onclick="submit()">Submit jobs</button>
+                    </div>
+                </div>
             </div>
-            <ul>
-                <li>Enclose field names in backticks.</li>
-                <li>Backticks may be omitted if field name contains no whitespace; starts with letter or underscore; and contains only letters, digits and underscores.</li>
-                <li>Enclose string values in double-quotes.</li>
-                <li>Using field tests written as name-operator-value (e.g. REF == "A"), build Boolean expressions using AND, OR and parentheses.</li>
-            </ul>
-            <p>You can:</p>
-            <ol>
-                <li>Use a pre-defined mask.</li>
-                <li>Start with a pre-defined mask as a template and edit it.</li>
-                <li>Start building from scratch by typing in the editor.</li>
-            </ol>
-            <!-- This ought to be done with Vue. toggle seen -->
-            <div id="mask-subtabs">
-                <div id="mask-tabtop">
-                    <label><button id="load-mask" onclick="setPredefinedMask()">Load predefined mask</button></label>
-                    <label><button id="fields-operators">Fields & operators</button></label>
-                </div>
-                <div id=mask-main>
-                    <label for="masks">Mask</label>
-                    <select name="masks" id="masks">
-                        <option value="0of5_1pct">0of5_1pct</option>
-                    </select>
-                </div>
-            </div>
-            <div id="clear-mask">
-                    <label><button onclick="resetFilters()">Clear Mask</button></label>
-            </div>
-            <p id="code_mirror_parent"></p>
-        </div>
-    
-                </div>
-                </div>
-
-   
         </div>
     </div>
 </div>
