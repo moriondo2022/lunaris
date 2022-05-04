@@ -2,61 +2,57 @@
 
 <head>
     <title>Exome Gene-level Group-File Server (Lunaris Version 3.5.3-RC2)</title>
-    <link rel="stylesheet" href="css/eggserver-amp.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/eggserver-new.css">
+    <link rel="stylesheet" href="css/mdkp.css">
+    <link rel="stylesheet" href="css/chunk-common.4e0fe4ce.css">
+    <link rel="stylesheet" href="css/chunk-vendors.fb65572e.css">
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="codemirror/theme/liquibyte.css">
+    
+    <!-- Scripts-->
     <script src="js/vep.js"></script>
     <script src="codemirror/lib/codemirror.js"></script>
-    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
     <script src="codemirror/mode/javascript/javascript.js"></script>
-    <link rel="stylesheet" href="codemirror/theme/liquibyte.css">
     <!-- Using Vue 2-->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 
 <body onload="init()" class="kp-default">
-<header>
-    <img class="mdkp-logo" id="eggserverLogo" src="egg_server_logo.svg" alt="EGG Server logo"/>
-    <h1>
-        
-        <!--Bolded initials to emphasize "EGG."-->
-        <strong>E</strong>xome <strong>G</strong>ene-level <strong>G</strong>roup-file Server
-    </h1>
-    <div id="lunarisBranding">
-    <div id="lunarisHeader">
-        <span>Powered by</span> <span>Lunaris</span> 
-    </div>
-        <img id="lunarisLogo" src="lunaris_logo.svg" alt="Lunaris logo"/>
-    </div>
-    
-</header>
-    
-    <div class="panel" id="paneltop>">
-    <div id="explainer">
-    <p>The <strong>Exome Gene-Level Group-File Generator</strong> is designed to, based on a user-provided location-sorted list of exome
-    variants, annotate variants using the
-    <a href="https://www.ensembl.org/info/docs/tools/vep/index.html" target="_blank"
-       rel="noopener noreferrer">Ensembl Variant Effect Predictor (VEP)</a>
-    and generate group files to run gene-level association tests using rareMETALS or EPACTS format.
-    Users can define masks based on annotations, or use one of the
-    <a href="https://www.nature.com/articles/s41586-019-1231-2" target="_blank"
-       rel="noopener noreferrer">published masks provided</a>.</p>
-
-    <p> To download group files for UK BioBank 50k Exome release (2019), click
-    <a
-    href="https://storage.googleapis.com/eggserver-data/examples/output/UKBBw1.ALL.variant.groupfiles.raremetals.tar"
-    download="UKBBw1.ALL.variant.groupfiles.raremetals.tar">here</a>
-    for rareMETALS and
-    <a
-    href="https://storage.googleapis.com/eggserver-data/examples/output/UKBBw1.ALL.variant.groupfiles.epacts.tar"
-    download="UKBBw1.ALL.variant.groupfiles.epacts.tar">here</a>
-    for EPACTS format.</p>
-    </div>
-        <div id="statuschecker">
-            <h2>Check status</h2>
-            <label for="sessioninput">Session ID</label>
-            <input type="text" id="sessioninput" name="sessioninput" size="8">
-            <button onclick="promptAndLoadSession()">Load</button>
-                
+    <header>
+        <img class="mdkp-logo" id="eggserverLogo" src="egg_server_logo.svg" alt="EGG Server logo"/>
+        <h1>
+            <!--Bolded initials to emphasize "EGG."-->
+            <strong>E</strong>xome <strong>G</strong>ene-level <strong>G</strong>roup-file Server
+        </h1>
+        <div id="lunarisBranding">
+            <div id="lunarisHeader"><span>Powered by</span> <span>Lunaris</span></div>
+            <img id="lunarisLogo" src="lunaris_logo.svg" alt="Lunaris logo"/>
         </div>
+    </header>
+    
+<div id="eggserver">
+    <div class="container-fluid mdkp-body">
+        <div class="card mdkp-card">
+            <div class="row card-body">
+                <div class="col-md-9" id="explainer">
+                    <p>The <strong>Exome Gene-Level Group-File Generator</strong> is designed to, based on a user-provided location-sorted list of exome variants, annotate variants using the 
+                        <a href="https://www.ensembl.org/info/docs/tools/vep/index.html" target="_blank" rel="noopener noreferrer"> Ensembl Variant Effect Predictor (VEP)</a> 
+                        and generate group files to run gene-level association tests using rareMETALS or EPACTS format. Users can define masks based on annotations, or use one of the <a href="https://www.nature.com/articles/s41586-019-1231-2" target="_blank" rel="noopener noreferrer">published masks provided</a>.
+                    </p>
+                    <p> To download group files for UK BioBank 50k Exome release (2019), click
+                        <a href="https://storage.googleapis.com/eggserver-data/examples/output/UKBBw1.ALL.variant.groupfiles.raremetals.tar" download="UKBBw1.ALL.variant.groupfiles.raremetals.tar">here</a> for rareMETALS and
+                        <a href="https://storage.googleapis.com/eggserver-data/examples/output/UKBBw1.ALL.variant.groupfiles.epacts.tar" download="UKBBw1.ALL.variant.groupfiles.epacts.tar">here</a> for EPACTS format.
+                    </p>
+                </div>
+                <!--div class="divider col"></div-->
+                <div class="col-md-3" id="statuschecker">
+                    <h3>Check status</h3>
+                    <label for="sessioninput">Session ID</label>
+                    <input type="text" id="sessioninput" name="sessioninput" size="8">
+                    <button class="btn btn-primary" onclick="promptAndLoadSession()">Load</button>
+                </div>
+            </div>
     </div>
     <div class="panel" id="createjob">
         <h2 class="panelheading">Create job</h2>
@@ -132,6 +128,8 @@
         </div>
     </div>
 
+    </div>
+</div>
 <p>
 
     <label>Available fields:<select name="fields" id="fields"></select></label>.

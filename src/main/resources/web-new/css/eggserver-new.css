@@ -49,3 +49,8 @@ header {
     display: block;
     text-align: right;
 }
+
+/*Instead of a divider column, doing this at the top.*/
+#statuschecker{
+    border-left: #aaa 1px solid;
+}
