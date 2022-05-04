@@ -1,0 +1,58 @@
+/*Eggserver-specific styles. Should be refactored away as much as possible.*/
+
+body, textarea {
+    background-color: #EFEFEC;
+    color: black;
+    font-family: Sans-Serif, sans-serif;
+}
+
+h1 {
+    padding: 10px;
+    font-weight: normal;
+    display: inline;
+    vertical-align: middle;
+}
+
+header {
+    background-color: #0097d6;
+    color: white;
+    padding: 20px;
+}
+
+#eggserverLogo {
+    height: 60px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#lunarisLogo{
+    padding-left: 5px;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    float: right;
+    vertical-align: middle;
+}
+
+#lunarisBranding{
+    padding-top: 9px;
+    display: inline-block;
+    float: right;
+}
+#lunarisHeader {
+    display: inline-block;
+    padding-top: 4px;
+    font-size: smaller;
+}
+
+#lunarisHeader span {
+    display: block;
+    text-align: right;
+}
+
+/*Styles from the Knowledge Portal go here.*/
+
+body.kp-default {
+background-color: #eee;
+font-family: "Roboto", Arial, sans-serif;
+}
