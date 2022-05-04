@@ -50,8 +50,16 @@
                 <div class="col-md-3" id="statuschecker">
                     <h4>Check status</h4>
                     <label for="sessioninput">Session ID</label>
-                    <input type="text" id="sessioninput" name="sessioninput" size="8">
-                    <button class="btn btn-primary" onclick="promptAndLoadSession()">Load</button>
+                    <div>
+                        <div class="status-placeholder"></div>
+                        <input type="text" class="form-control" id="sessioninput" name="sessioninput" size="8">
+                        <div class="status-placeholder"></div>
+                    </div>
+                    <div>
+                        <div class="status-placeholder"></div>
+                        <button class="btn btn-primary" onclick="promptAndLoadSession()">Load</button>
+                        <div class="status-placeholder"></div>
+                    </div>
                 </div>
             </div>
         </div>

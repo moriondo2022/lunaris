@@ -41,7 +41,6 @@ header {
 }
 #lunarisHeader {
     display: inline-block;
-    padding-top: 4px;
     font-size: smaller;
 }
 
@@ -54,7 +53,7 @@ header {
 #statuschecker{
     border-left: #aaa 1px solid;
     text-align: center;
-    display: inline-block;
+    display: inline-block
 }
 
 #statuschecker h4 {
@@ -66,9 +65,23 @@ header {
     display: block;
 }
 
-#statuschecker button{
-    display: block;
-    align-self: center;
+#statuschecker div {
+    display: flex;
+}
+
+#statuschecker .status-placeholder{
+    flex: 1;
+}
+
+#statuschecker input{
+    margin-bottom: 10px;
+    flex:2;
+}
+
+#statuschecker button {
+    margin-top: 10px;
+    flex: 2;
+    max-width: 120px;
 }
 
 .mdkp-footer a {
