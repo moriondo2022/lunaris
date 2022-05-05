@@ -65,11 +65,11 @@ header {
     display: block;
 }
 
-#statuschecker div {
+div.centering {
     display: flex;
 }
 
-#statuschecker .status-placeholder{
+div.placeholder{
     flex: 1;
 }
 
@@ -86,4 +86,18 @@ header {
 
 .mdkp-footer a {
     color: white !important;
+}
+
+div.accordion{
+    margin: 10px;
+}
+
+div.card.mb-1 {
+    border-bottom: 0px !important;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+div.card-body {
+    padding: 20px;
 }

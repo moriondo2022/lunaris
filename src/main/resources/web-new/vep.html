@@ -50,15 +50,15 @@
                 <div class="col-md-3" id="statuschecker">
                     <h4>Check status</h4>
                     <label for="sessioninput">Session ID</label>
-                    <div>
-                        <div class="status-placeholder"></div>
+                    <div class="centering">
+                        <div class="placeholder"></div>
                         <input type="text" class="form-control" id="sessioninput" name="sessioninput" size="8">
-                        <div class="status-placeholder"></div>
+                        <div class="placeholder"></div>
                     </div>
-                    <div>
-                        <div class="status-placeholder"></div>
+                    <div class="centering">
+                        <div class="placeholder"></div>
                         <button class="btn btn-primary" onclick="promptAndLoadSession()">Load</button>
-                        <div class="status-placeholder"></div>
+                        <div class="placeholder"></div>
                     </div>
                 </div>
             </div>
@@ -118,6 +118,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div role="tablist" class="accordion">
                     <div class="card mb-1">
                         <header role="tab" class="card-header p-1">
                             <button type="button" class="btn btn-outline-primary btn-block not-collapsed" aria-expanded="true" aria-controls="accordion-1">Mask
@@ -182,15 +184,25 @@
                         </div>
                         <label><button onclick="resetFilters()">Clear Mask</button></label>
                         <p id="code_mirror_parent"></p>
-                        <label>Output format
-                            <select name="formats" id="formats">
-                                <option value="rareMETALS">list/rareMETALS</option>
-                                <option value="EPACTS">EPACTS</option>
-                            </select>
-                        </label>
-                        <button class="btn">Save job</button>
-                        <button class="btn btn-primary">Save job and create new job</button>
+                        <div class="centering">
+                            <div class="placeholder"></div>
+                            <label id="output-format" style="text-align: center">Output format
+                                <select class="form-control" name="formats" id="formats">
+                                    <option value="rareMETALS">list/rareMETALS</option>
+                                    <option value="EPACTS">EPACTS</option>
+                                </select>
+                            </label>
+                            <div class="placeholder"></div>
+                        </div>
+                        <div class="centering">
+                            <div class="placeholder"></div>
+                            <button class="btn btn-secondary">Save job</button>
+                            <button class="btn btn-primary">Save job and create new job</button>
+                            <div class="placeholder"></div>
+                        </div>
                     </div>
+                </div>
+                <div role="tablist" class="accordion">
                     <div class="card mb-1">
                         <header role="tab" class="card-header p-1">
                             <button type="button" class="btn btn-outline-primary btn-block not-collapsed" aria-expanded="true" aria-controls="accordion-1">Submit jobs 
@@ -215,9 +227,19 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <label for="email">E-mail to receive notification(optional)</label>
-                        <input type="email" name="email">
-                        <button onclick="submit()">Submit jobs</button>
+                        <div class="centering">
+                            <div class="placeholder"></div>
+                            <label for="email">E-mail to receive notification (optional)
+                                <input class="form-control" type="email" name="email">
+                            </label>
+                            <div class="placeholder"></div>
+                        </div>
+                        <div class="centering">
+                            <div class="placeholder"></div>
+                            <button class="btn btn-secondary" onclick="submit()">Submit jobs</button>
+                            <div class="placeholder"></div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
