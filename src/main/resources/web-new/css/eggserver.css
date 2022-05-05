@@ -131,3 +131,21 @@ thead {
 #statuscard {
     border: 0px;
 }
+
+.tabs {
+    padding: 10px !important;
+}
+
+li.nav-item {
+    padding-right: 5px;
+}
+
+.btn-secondary {
+    background-color: green !important;
+    border-color: green !important;
+}
+
+.btn-secondary:hover{
+    background-color: darkgreen !important;
+    border-color: darkgreen !important;
+}
