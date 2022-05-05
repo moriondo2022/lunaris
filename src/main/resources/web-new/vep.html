@@ -140,7 +140,7 @@
                         </ol>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="tabs" id="__BVID__12">
+                                <div class="tabs filtering-ui-wrapper" id="__BVID__12">
                                     <div id="mask-subtabs">
                                         <ul role="tablist" class="nav nav-tabs" id="__BVID__12__BV_tab_controls_">
                                             <li role="presentation" class="nav-item">
@@ -152,18 +152,22 @@
                                         </ul>
                                     </div>
                                     <div class="tab-content mt-3" id="__BVID__12__BV_tab_container_">
-                                        <div role="tabpanel" class="tabpane" id="__BVID__13">
-                                            <label for="masks">Mask</label>
-                                            <select class="form-control" name="masks" id="masks">
-                                                <option value="0of5_1pct">0of5_1pct</option>
-                                            </select>
+                                        <div role="tabpanel" class="centering tabpane" id="__BVID__13">
+                                            <div class="placeholder"></div>
+                                            <label for="masks">Mask
+                                                <select class="form-control" name="masks" id="masks">
+                                                    <option value="0of5_1pct">0of5_1pct</option>
+                                                </select>
+                                            </label>
+                                            <div class="placeholder"></div>
                                         </div>
+                                        Is this (below) supposed to appear under the fields and operators tab?
                                         <div role="tabpanel" class="tabpane" id="__BVID__16">
                                             <label>Available fields:
-                                                <select name="fields" id="fields"></select>
-                                            </label>.
+                                                <select class="form-control" name="fields" id="fields"></select>
+                                            </label>
                                             <label>Available operators:
-                                                <select name="operators" id="operators">
+                                                <select class="form-control" name="operators" id="operators">
                                                     <option>== (equals)</option>
                                                     <option>!= (does not equal)</option>
                                                     <option>~ (contains regex)</option>
@@ -186,7 +190,7 @@
                         <p id="code_mirror_parent"></p>
                         <div class="centering">
                             <div class="placeholder"></div>
-                            <label id="output-format" style="text-align: center">Output format
+                            <label id="output-format">Output format
                                 <select class="form-control" name="formats" id="formats">
                                     <option value="rareMETALS">list/rareMETALS</option>
                                     <option value="EPACTS">EPACTS</option>
@@ -222,7 +226,19 @@
                                 <tr>
                                     <td>file_name_1.vcf</td>
                                     <td>hg19</td>
-                                    <td>Mask</td>
+                                    <td>mask</td>
+                                    <td>list/rareMETAL</td>
+                                </tr>
+                                <tr>
+                                    <td>file_name_2.vcf</td>
+                                    <td>hg19</td>
+                                    <td>mask</td>
+                                    <td>list/rareMETAL</td>
+                                </tr>
+                                <tr>
+                                    <td>file_name_3.vcf</td>
+                                    <td>hg19</td>
+                                    <td>mask</td>
                                     <td>list/rareMETAL</td>
                                 </tr>
                             </tbody>
@@ -247,10 +263,50 @@
         <div class="card mdkp-card">
             <div class="card-body">
                 <h4 class="card-title">Status</h4>
-                <p>Session id is <b><span id="session_id_area"></span></b>.</p>
-                <p id="submission_area">
-                    <span id="statusUpdatesPlaceholder">Submit time & any information regarding the session</span>
-                </p>
+                <div class="card" id="statuscard">
+                    <p>Session id is <b><span id="session_id_area"></span></b>.</p>
+                    <p id="submission_area">
+                        <span id="statusUpdatesPlaceholder">Submit time & any information regarding the session</span>
+                    </p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Input file</td>
+                                <td>Reference genome</td>
+                                <td>Mask</td>
+                                <td>Output format</td>
+                                <td>Output file</td>
+                                <td>Restore job</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>file_name_1.vcf</td>
+                                <td>hg19</td>
+                                <td><a>mask</a></td>
+                                <td>list/rareMETAL</td>
+                                <td><a>Output file 1</a></td>
+                                <td><a>Restore</a></td>
+                            </tr>
+                            <tr>
+                                <td>file_name_2.vcf</td>
+                                <td>hg19</td>
+                                <td><a>mask</a></td>
+                                <td>list/rareMETAL</td>
+                                <td><a>Output file 2</a></td>
+                                <td><a>Restore</a></td>
+                            </tr>
+                            <tr>
+                                <td>file_name_3.vcf</td>
+                                <td>hg19</td>
+                                <td><a>mask</a></td>
+                                <td>list/rareMETAL</td>
+                                <td><a>Output file 3</a></td>
+                                <td><a>Restore</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

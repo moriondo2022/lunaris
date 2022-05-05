@@ -101,3 +101,33 @@ div.card.mb-1 {
 div.card-body {
     padding: 20px;
 }
+
+div.centering .btn{
+    margin: 5px;
+}
+
+div.centering label{
+    text-align: center;
+}
+
+.nav-link.active {
+    background-color: #efefef !important;
+    border-bottom-color: #efefef !important;
+}
+
+.nav-link{
+    background-color: #dee2e6;
+}
+
+table {
+    margin: 20px;
+}
+
+thead {
+    font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+#statuscard {
+    border: 0px;
+}
