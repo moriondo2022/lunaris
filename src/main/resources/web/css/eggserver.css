@@ -153,3 +153,7 @@ li.nav-item {
 .message-area {
     min-height: 24px;
 }
+
+#inputfile{
+    display: none;
+}
