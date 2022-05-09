@@ -33,7 +33,7 @@ function init() {
 
 function setUpInputDisplays(){
     let inputFileChooser = document.getElementById("inputfile");
-    inputFileChooser.onchange = showChosenFile;
+    inputFileChooser.onchange = showOnBadge;
     let genomeChooser = document.getElementById("hg");
     genomeChooser.onchange = showChosenGenome;
 
@@ -140,6 +140,11 @@ function isValidEmail(string) {
         domainParts.every(domainPart => domainPart.trim().length > 0);
 }
 
+function showOnBadge(e){
+    let inputValue = e.target.value;
+    let badge = document.getElementById("chosen-file");
+    badge.textContent = inputValue;
+}
 
 function showChosenFile(){
     let chosenFile = document.getElementById("inputfile").value;
