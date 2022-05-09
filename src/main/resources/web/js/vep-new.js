@@ -103,8 +103,8 @@ function getIdAndLoadSession(){
 }
 
 function warnSessionInvalid(sessionId){
-    const sessionInvalidP = document.getElementById("session-invalid");
-    sessionInvalidP.textContent = sessionId + " is not a valid session ID.";
+    const sessionInvalidArea = document.getElementById("session-invalid");
+    sessionInvalidArea.textContent = sessionId + " is not a valid session ID.";
 }
 
 function setEmptySubmissionArea() {
@@ -129,21 +129,27 @@ function isValidEmail(string) {
         domainParts.every(domainPart => domainPart.trim().length > 0);
 }
 
+function warnInvalidEmail(email){
+    const emailInvalidArea = document.getElementById("email-invalid");
+    let message = " is not a valid email. Your job has not been submitted. Please try again."
+    emailInvalidArea.textContent = email + message;
+}
+
 function submit() {
     const inputFile = document.getElementById("inputfile").files[0];
+    const emailField = document.getElementById("email");
+    const emailInput = emailField.value;
+    
     let email;
-    let userDeclinedEmail;
-    while(!userDeclinedEmail && !email) {
-        userDeclinedEmail = !confirm("Would you like an email when the job completes?");
-        if(!userDeclinedEmail) {
-            const emailInput =
-                prompt("Please enter your email:", lunarisVariantPredictor.email ?? "");
-            if(isValidEmail(emailInput)) {
-                email = emailInput;
-                lunarisVariantPredictor.email = email;
-            } else {
-                alert(emailInput + " is not a valid email.");
-            }
+    let userDeclinedEmail = emailInput == "";
+    
+    if(!userDeclinedEmail) {
+        if(isValidEmail(emailInput)) {
+            email = emailInput;
+            lunarisVariantPredictor.email = email;
+        } else {
+            warnInvalidEmail(emailInput);
+            return;
         }
     }
 

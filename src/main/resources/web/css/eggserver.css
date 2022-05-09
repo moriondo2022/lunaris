@@ -150,6 +150,6 @@ li.nav-item {
     border-color: darkgreen !important;
 }
 
-#session-invalid {
+.message-area {
     min-height: 24px;
 }
