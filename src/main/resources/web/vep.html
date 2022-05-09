@@ -95,7 +95,7 @@
                                                     <div data-v-06e3dc2f="">
                                                         <div data-v-06e3dc2f="" class="input-group">
                                                             <label class="form-control">Choose File
-                                                                <input class="form-control" type="file" id="inputfile" name="myfile">
+                                                                <input class="form-control has-badge" type="file" id="inputfile" name="myfile">
                                                             </label>
                                                         </div>
                                                         <div data-v-06e3dc2f="" class="list-group shadow vbt-autcomplete-list" style="width: 220px; display: none;">
@@ -106,7 +106,7 @@
                                                     <div class="label">Reference Genome</div>
                                                     <div data-v-06e3dc2f="">
                                                         <div data-v-06e3dc2f="" class="input-group">
-                                                            <select class="form-control" name="hg" id="hg" placeholder="Choose Genome">
+                                                            <select class="form-control has-badge" name="hg" id="hg" placeholder="Choose Genome">
                                                                 <option>hg19</option>
                                                                 <option>hg38</option>
                                                             </select>
@@ -130,7 +130,9 @@
                     <div class="card mb-1">
                         <header role="tab" class="card-header p-1">
                             <button type="button" class="btn btn-outline-primary btn-block not-collapsed" aria-expanded="true" aria-controls="accordion-1">Mask
-                                <!--div class="criteria"></div-->
+                                <div class="criteria">
+                                    <span class="badge filter-pill-mask" id="formats-badge"></span>
+                                </div>
                             </button>
                         </header>
                         <div class="card-body">
@@ -199,7 +201,7 @@
                         <div class="centering">
                             <div class="placeholder"></div>
                             <label id="output-format">Output format
-                                <select class="form-control" name="formats" id="formats">
+                                <select class="form-control has-badge" name="formats" id="formats">
                                     <option value="rareMETALS">list/rareMETALS</option>
                                     <option value="EPACTS">EPACTS</option>
                                 </select>
@@ -217,7 +219,9 @@
                     <div class="card mb-1">
                         <header role="tab" class="card-header p-1">
                             <button type="button" class="btn btn-outline-primary btn-block not-collapsed" aria-expanded="true" aria-controls="accordion-1">Submit jobs 
-                                <!--div class="criteria"></div-->
+                                <div class="criteria">
+                                    <span class="badge filter-pill-mask" id="email-badge"></span>
+                                </div>
                             </button>
                         </header>
                         <table>
@@ -253,7 +257,7 @@
                         <div class="centering">
                             <div class="placeholder"></div>
                             <label for="email">E-mail to receive notification (optional)
-                                <input class="form-control" type="email" name="email" id="email">
+                                <input class="form-control has-badge" type="email" name="email" id="email">
                             </label>
                             <div class="placeholder"></div>
                         </div>

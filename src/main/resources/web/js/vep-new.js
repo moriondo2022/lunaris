@@ -32,10 +32,13 @@ function init() {
     
 
 function setUpInputDisplays(){
-    let inputFileChooser = document.getElementById("inputfile");
-    inputFileChooser.onchange = showOnBadge;
-    let genomeChooser = document.getElementById("hg");
-    genomeChooser.onchange = showOnBadge;
+    let badgeInputs = document.getElementsByClassName("has-badge");
+    console.log(badgeInputs.length);
+    for (let i = 0; i < badgeInputs.length; i++){
+        badgeInput = badgeInputs[i];
+        console.log(badgeInput.getAttribute("id"));
+        badgeInput.onchange = showOnBadge;
+    }
 
 }
 
@@ -145,19 +148,20 @@ function showOnBadge(e){
     let inputValue = e.target.value;
     let badgeId = e.target.getAttribute("id") + "-badge";
     let badge = document.getElementById(badgeId);
-    badge.textContent = inputValue;
-}
-
-function showChosenFile(){
-    let chosenFile = document.getElementById("inputfile").value;
-    let fileBadge = document.getElementById("chosen-file");
-    fileBadge.textContent = chosenFile;
+    if (badge){
+        badge.textContent = inputValue;   
+    }
 }
 
 function warnInvalidEmail(email){
     const emailInvalidArea = document.getElementById("email-invalid");
     let message = " is not a valid email. Your job has not been submitted. Please try again."
     emailInvalidArea.textContent = email + message;
+}
+
+function validEmailMsg(email){
+    const emailInvalidArea = document.getElementById("email-invalid");
+    emailInvalidArea.textContent = "Submitting job. Notification will be sent to " + email;
 }
 
 function submit() {
@@ -172,6 +176,8 @@ function submit() {
         if(isValidEmail(emailInput)) {
             email = emailInput;
             lunarisVariantPredictor.email = email;
+            validEmailMsg(email);
+            
         } else {
             warnInvalidEmail(emailInput);
             return;
