@@ -19,6 +19,7 @@ const codeMirrorConfig = {
 
 let codeMirror;
 
+
 function init() {
     initSession();
     getSchema();
@@ -26,6 +27,16 @@ function init() {
     const codeMirrorParent = document.getElementById("code_mirror_parent");
     codeMirror = CodeMirror(codeMirrorParent, codeMirrorConfig);
     codeMirror.setSize("95%", "7.5em");
+    setUpInputDisplays();
+}
+    
+
+function setUpInputDisplays(){
+    let inputFileChooser = document.getElementById("inputfile");
+    inputFileChooser.onchange = showChosenFile;
+    let genomeChooser = document.getElementById("hg");
+    genomeChooser.onchange = showChosenGenome;
+
 }
 
 function fourHexDigits(num) {
@@ -127,6 +138,19 @@ function isValidEmail(string) {
     const domainParts = domain.split("\.");
     return user && user.trim().length > 0 && domainParts.length > 1 &&
         domainParts.every(domainPart => domainPart.trim().length > 0);
+}
+
+
+function showChosenFile(){
+    let chosenFile = document.getElementById("inputfile").value;
+    let fileBadge = document.getElementById("chosen-file");
+    fileBadge.textContent = chosenFile;
+}
+
+function showChosenGenome(){
+    let chosenGenome = document.getElementById("hg").value;
+    let genomeBadge = document.getElementById("chosen-genome");
+    genomeBadge.textContent = chosenGenome;
 }
 
 function warnInvalidEmail(email){
