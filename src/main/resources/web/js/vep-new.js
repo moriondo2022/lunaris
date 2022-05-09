@@ -97,20 +97,14 @@ function getIdAndLoadSession(){
         if(isWellFormedSessionId(sessionId)){
             loadSession(sessionId);
         } else {
-            alert(sessionId + " is not a valid session ID.");
+            warnSessionInvalid(sessionId);
         }
     }
 }
 
-function promptAndLoadSession() {
-    const sessionId = prompt("Please enter session id.");
-    if(sessionId) {
-        if(isWellFormedSessionId(sessionId)) {
-            loadSession(sessionId);
-        } else {
-            alert(sessionId + " is not a well formed session id.");
-        }
-    }
+function warnSessionInvalid(sessionId){
+    const sessionInvalidP = document.getElementById("session-invalid");
+    sessionInvalidP.textContent = sessionId + " is not a valid session ID.";
 }
 
 function setEmptySubmissionArea() {

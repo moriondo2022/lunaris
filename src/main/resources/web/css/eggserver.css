@@ -149,3 +149,7 @@ li.nav-item {
     background-color: darkgreen !important;
     border-color: darkgreen !important;
 }
+
+#session-invalid {
+    min-height: 24px;
+}
