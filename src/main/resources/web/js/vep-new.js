@@ -35,7 +35,7 @@ function setUpInputDisplays(){
     let inputFileChooser = document.getElementById("inputfile");
     inputFileChooser.onchange = showOnBadge;
     let genomeChooser = document.getElementById("hg");
-    genomeChooser.onchange = showChosenGenome;
+    genomeChooser.onchange = showOnBadge;
 
 }
 
@@ -141,8 +141,10 @@ function isValidEmail(string) {
 }
 
 function showOnBadge(e){
+    // is this a good way to do this or not?
     let inputValue = e.target.value;
-    let badge = document.getElementById("chosen-file");
+    let badgeId = e.target.getAttribute("id") + "-badge";
+    let badge = document.getElementById(badgeId);
     badge.textContent = inputValue;
 }
 
@@ -150,12 +152,6 @@ function showChosenFile(){
     let chosenFile = document.getElementById("inputfile").value;
     let fileBadge = document.getElementById("chosen-file");
     fileBadge.textContent = chosenFile;
-}
-
-function showChosenGenome(){
-    let chosenGenome = document.getElementById("hg").value;
-    let genomeBadge = document.getElementById("chosen-genome");
-    genomeBadge.textContent = chosenGenome;
 }
 
 function warnInvalidEmail(email){
