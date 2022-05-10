@@ -233,9 +233,9 @@ RUN apt -y update && \
     git checkout v0.1.5 && \
     /opt/sbt/bin/sbt publishLocal && \
     cd .. && \
-    git clone https://github.com/broadinstitute/lunaris.git && \
+    git clone https://github.com/moriondo2022/lunaris.git && \
     cd lunaris && \
-    git checkout v3.5.3-RC2 && \
+    # git checkout v3.5.3-RC2 && \
     /opt/sbt/bin/sbt debian:packageBin && \
     apt -y install ./target/lunaris_3.5.3-RC2_all.deb && \
     cd .. && \
