@@ -26,7 +26,7 @@ function init() {
     initMasksSelector();
     const codeMirrorParent = document.getElementById("code_mirror_parent");
     codeMirror = CodeMirror(codeMirrorParent, codeMirrorConfig);
-    codeMirror.setSize("95%", "7.5em");
+    codeMirror.setSize("100%", "7.5em");
     setUpInputDisplays();
 }
     
