@@ -154,6 +154,17 @@ li.nav-item {
     min-height: 24px;
 }
 
-#inputfile{
+#inputfile {
     display: none;
+}
+
+.badge {
+    color: white;
+    background-color: #495f9c;
+    margin-top: 4px;
+}
+
+#email-badge, #hg-badge {
+    background-color: crimson;
+    /*margin-top: 4px;*/
 }
