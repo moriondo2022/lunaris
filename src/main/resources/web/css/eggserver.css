@@ -67,6 +67,7 @@ header {
 
 div.centering {
     display: flex;
+    width: 100%;
 }
 
 div.placeholder{

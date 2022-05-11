@@ -75,6 +75,8 @@ function setSessionId(sessionId) {
     lunarisVariantPredictor.sessionId = sessionId;
 }
 
+// TODO figure out how to save jobs and submit them all as a session
+
 function loadSession(sessionId) {
     fetch("/lunaris/predictor/session/" + sessionId)
         .then((response) => response.json())
