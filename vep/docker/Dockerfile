@@ -233,7 +233,7 @@ RUN apt -y update && \
     git checkout v0.1.5 && \
     /opt/sbt/bin/sbt publishLocal && \
     cd .. && \
-    git clone https://github.com/broadinstitute/lunaris.git && \
+    git clone https://github.com/moriondo2022/lunaris.git && \
     cd lunaris && \
     git checkout v3.7.0 && \
     /opt/sbt/bin/sbt debian:packageBin && \
