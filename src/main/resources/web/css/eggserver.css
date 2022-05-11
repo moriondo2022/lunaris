@@ -109,6 +109,7 @@ div.centering .btn{
 
 div.centering label{
     text-align: center;
+    font-weight: bold;
 }
 
 .nav-link.active {

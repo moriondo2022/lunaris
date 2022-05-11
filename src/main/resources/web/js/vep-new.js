@@ -12,6 +12,8 @@ const lunarisVariantPredictor = {
     masksList: []
 }
 
+const batchJobs = [];
+
 const codeMirrorConfig = {
     theme: "liquibyte",
     lineNumbers: true
@@ -157,15 +159,53 @@ function showOnBadge(e){
     }
 }
 
-function setEmailMsg(email, isValid){
+function setEmailMsg(msg){
     const emailInvalidArea = document.getElementById("email-invalid");
+    emailInvalidArea.textContent = msg;
+}
+
+function generateEmailMsg(email, isValid){
     let emailMsg = "";
     if (isValid){
         emailMsg = "Submitting job. Notification will be sent to " + email;
     } else {
         emailMsg = email + " is not a valid email. Your job has not been submitted. Please try again.";
     }
-    emailInvalidArea.textContent = emailMsg;
+    setEmailMsg(emailMsg);
+}
+
+// TODO difference between save job and save and create? Is it that save clears the inputs?
+// How many post requests when a batch is sent?
+
+function saveJob(){
+    const inputFile = document.getElementById("inputfile".files[0]);
+    const emailInput = document.getElementById("email").value;
+
+    // As of now, must have email in order to submit.
+    if (emailInput == ""){
+        setEmailMsg("Enter your email to continue.");
+        return;
+    }
+    if(isValidEmail(emailInput)) {
+        lunarisVariantPredictor.email = emailInput;
+        generateEmailMsg(emailInput, true);
+    } else {
+        generateEmailMsg(emailInput, false);
+        return;
+    }
+    addTemporaryStatus(inputFile);
+
+    const formData = new FormData();
+
+    formData.append("filter", codeMirror.getValue());
+    formData.append("inputFile", inputFile);
+    formData.append("format", getOutputFormat());
+    formData.append("session", lunarisVariantPredictor.sessionId);
+    formData.append("hg", getHg());
+    formData.append("email", emailInput);
+
+    batchJobs.push(formData);
+
 }
 
 function submit() {
@@ -174,18 +214,19 @@ function submit() {
     const emailInput = emailField.value;
     
     let email;
-    let userDeclinedEmail = emailInput == "";
-    
-    if(!userDeclinedEmail) {
-        if(isValidEmail(emailInput)) {
-            email = emailInput;
-            lunarisVariantPredictor.email = email;
-            setEmailMsg(emailInput, true);
-            
-        } else {
-            setEmailMsg(emailInput, false);
-            return;
-        }
+
+    if (emailInput == ""){
+        setEmailMsg("Enter your email to continue.");
+        return;
+    }
+
+    if(isValidEmail(emailInput)) {
+        email = emailInput;
+        lunarisVariantPredictor.email = email;
+        generateEmailMsg(emailInput, true);
+    } else {
+        generateEmailMsg(emailInput, false);
+        return;
     }
 
     addTemporaryStatus(inputFile);
