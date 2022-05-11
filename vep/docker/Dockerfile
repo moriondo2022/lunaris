@@ -235,7 +235,7 @@ RUN apt -y update && \
     cd .. && \
     git clone https://github.com/moriondo2022/lunaris.git && \
     cd lunaris && \
-    git checkout v3.7.0 && \
+#    git checkout v3.7.0 && \
     /opt/sbt/bin/sbt debian:packageBin && \
     apt -y install ./target/lunaris_3.7.0_all.deb && \
     cd .. && \
