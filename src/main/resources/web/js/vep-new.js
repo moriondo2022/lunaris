@@ -80,7 +80,7 @@ function loadSession(sessionId) {
         .then((response) => response.json())
         .then((session) => {
             if(session.error) {
-                alert("Error:\n" + session.message);
+                setSessionMsg("Error:\n" + session.message);
                 window.log(session.report);
             } else if(session.found) {
                 setSessionId(sessionId);
@@ -97,9 +97,11 @@ function loadSession(sessionId) {
                     const inputFileName = path.substring(path.lastIndexOf("/") + 1);
                     addStatusEntry(inputFileName, id);
                 });
+                setSessionMsg("Loading session " + sessionId + ".");
             } else {
-                alert("Unknown session " + sessionId +
-                    ".\nNote that sessions are only saved when something is submitted.");
+                const sessionMsg = "Unknown session " + sessionId +
+                    ".\nNote that sessions are only saved when something is submitted.";
+                setSessionMsg(sessionMsg);
             }
         });
 }
@@ -111,14 +113,14 @@ function getIdAndLoadSession(){
         if(isWellFormedSessionId(sessionId)){
             loadSession(sessionId);
         } else {
-            warnSessionInvalid(sessionId);
+            setSessionMsg(sessionId + " is not a valid session ID.");
         }
     }
 }
 
-function warnSessionInvalid(sessionId){
-    const sessionInvalidArea = document.getElementById("session-invalid");
-    sessionInvalidArea.textContent = sessionId + " is not a valid session ID.";
+function setSessionMsg(msg) {
+    const sessionArea = document.getElementById("session-invalid");
+    sessionArea.textContent = msg;
 }
 
 function setEmptySubmissionArea() {
@@ -153,15 +155,15 @@ function showOnBadge(e){
     }
 }
 
-function warnInvalidEmail(email){
+function setEmailMsg(email, isValid){
     const emailInvalidArea = document.getElementById("email-invalid");
-    let message = " is not a valid email. Your job has not been submitted. Please try again."
-    emailInvalidArea.textContent = email + message;
-}
-
-function validEmailMsg(email){
-    const emailInvalidArea = document.getElementById("email-invalid");
-    emailInvalidArea.textContent = "Submitting job. Notification will be sent to " + email;
+    let emailMsg = "";
+    if (isValid){
+        emailMsg = "Submitting job. Notification will be sent to " + email;
+    } else {
+        emailMsg = email + " is not a valid email. Your job has not been submitted. Please try again.";
+    }
+    emailInvalidArea.textContent = emailMsg;
 }
 
 function submit() {
@@ -176,10 +178,10 @@ function submit() {
         if(isValidEmail(emailInput)) {
             email = emailInput;
             lunarisVariantPredictor.email = email;
-            validEmailMsg(email);
+            setEmailMsg(emailInput, true);
             
         } else {
-            warnInvalidEmail(emailInput);
+            setEmailMsg(emailInput, false);
             return;
         }
     }
