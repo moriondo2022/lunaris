@@ -173,9 +173,6 @@ function generateEmailMsg(email, isValid){
     setEmailMsg(emailMsg);
 }
 
-// TODO difference between save job and save and create? Is it that save clears the inputs?
-// How many post requests when a batch is sent?
-
 function saveJob(){
     const formData = new FormData();
 
@@ -187,6 +184,11 @@ function saveJob(){
     //formData.append("email", emailInput);
 
     batchJobs.push(formData);
+}
+
+function saveJobAndCreateNew(){
+    saveJob();
+    // TODO clear all inputs
 }
 
 function submitAll(){
@@ -205,6 +207,7 @@ function submitAll(){
         generateEmailMsg(emailInput, false);
         return;
     }
+    //TODO figure out what add temporary status even means.
     addTemporaryStatus(inputFile);
 }
 
