@@ -35,10 +35,9 @@ function init() {
 
 function setUpInputDisplays(){
     let badgeInputs = document.getElementsByClassName("has-badge");
-    console.log(badgeInputs.length);
-    for (let i = 0; i < badgeInputs.length; i++){
+    let badgeInput;
+    for (let i = 0; i < badgeInputs.length; i++) {
         badgeInput = badgeInputs[i];
-        console.log(badgeInput.getAttribute("id"));
         badgeInput.onchange = showOnBadge;
     }
 
@@ -178,6 +177,19 @@ function generateEmailMsg(email, isValid){
 // How many post requests when a batch is sent?
 
 function saveJob(){
+    const formData = new FormData();
+
+    formData.append("filter", codeMirror.getValue());
+    formData.append("inputFile", inputFile);
+    formData.append("format", getOutputFormat());
+    formData.append("session", lunarisVariantPredictor.sessionId);
+    formData.append("hg", getHg());
+    //formData.append("email", emailInput);
+
+    batchJobs.push(formData);
+}
+
+function submitAll(){
     const inputFile = document.getElementById("inputfile".files[0]);
     const emailInput = document.getElementById("email").value;
 
@@ -194,18 +206,6 @@ function saveJob(){
         return;
     }
     addTemporaryStatus(inputFile);
-
-    const formData = new FormData();
-
-    formData.append("filter", codeMirror.getValue());
-    formData.append("inputFile", inputFile);
-    formData.append("format", getOutputFormat());
-    formData.append("session", lunarisVariantPredictor.sessionId);
-    formData.append("hg", getHg());
-    formData.append("email", emailInput);
-
-    batchJobs.push(formData);
-
 }
 
 function submit() {
