@@ -174,21 +174,58 @@ function generateEmailMsg(email, isValid){
 }
 
 function saveJob(){
+    //TODO handle empty fields.
+
     const formData = new FormData();
 
     formData.append("filter", codeMirror.getValue());
-    formData.append("inputFile", inputFile);
+    formData.append("inputFile", getInputFile());
     formData.append("format", getOutputFormat());
     formData.append("session", lunarisVariantPredictor.sessionId);
     formData.append("hg", getHg());
     //formData.append("email", emailInput);
 
     batchJobs.push(formData);
+    showNewQueuedJob(formData);
+
+    //TODO update the saved jobs area
 }
 
 function saveJobAndCreateNew(){
     saveJob();
     // TODO clear all inputs
+}
+
+function showNewQueuedJob(formData){
+    const newRow = document.createElement("tr");
+
+    const inputFileTd = document.createElement("td");
+    inputFileTd.innerText = trimFilename(formData.get("inputFile"));
+    newRow.append(inputFileTd);
+
+    const hgTd = document.createElement("td");
+    hgTd.innerText = formData.get("hg");
+    newRow.append(hgTd);
+
+    const maskTd = document.createElement("td");
+    maskTd.innerText = "How do we display this?";//formData.get();
+    newRow.append(maskTd);
+
+    const formatTd = document.createElement("td");
+    formatTd.innerText = formData.get("format");
+    newRow.append(formatTd);
+
+    const submitTableBody = document.getElementById("submit-table-body");
+    submitTableBody.append(newRow);
+
+}
+
+function trimFilename(longFilename){
+    let shortFilename = longFilename.split("\\")[-1];
+    if (shortFilename){
+        return shortFilename;
+    }
+    return longFilename;
 }
 
 function submitAll(){
@@ -444,7 +481,7 @@ function getMaskSelectNode() {
 }
 
 function getOutputFormatNode() {
-    return document.getElementById("formats")
+    return document.getElementById("formats");
 }
 
 function setOutputFormat(format) {
@@ -453,6 +490,10 @@ function setOutputFormat(format) {
 
 function getOutputFormat() {
     return getOutputFormatNode().value;
+}
+
+function getInputFile(){
+    return document.getElementById("inputfile").value;
 }
 
 function getHg() {
