@@ -303,7 +303,6 @@ function submitAll(){
         console.log("Submitting " + formData);
         fetch("/lunaris/predictor/upload", {method: "POST", body: formData})
             .then((response) => {
-                removeTemporaryStatus();
                 if (!response.ok) {
                     throw "Could not submit " + inputFile.name + ": " + response.statusText;
                 }
@@ -316,25 +315,6 @@ function submitAll(){
     }
 }
 
-
-const tempStatusNodeId = "tempStatusNode";
-
-function addTemporaryStatus(file) {
-    removeTemporaryStatus();
-    const statusNode = document.createElement("p");
-    statusNode.id = tempStatusNodeId;
-    statusNode.innerText = file.name + ": uploading ...";
-    const statusAreaNode = getSubmissionAreaNode();
-    statusAreaNode.insertAdjacentElement("afterbegin", statusNode);
-}
-
-function removeTemporaryStatus() {
-    const statusNode = document.getElementById(tempStatusNodeId);
-    if (statusNode) {
-        const statusAreaNode = getSubmissionAreaNode();
-        statusAreaNode.removeChild(statusNode);
-    }
-}
 function getSchema() {
     fetch("/lunaris/predictor/schema")
         .then((response) => {
