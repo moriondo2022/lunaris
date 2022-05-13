@@ -174,23 +174,140 @@
                                         </div>
                                         Is this (below) supposed to appear under the fields and operators tab?
                                         <div role="tabpanel" class="tabpane" id="__BVID__16">
-                                            <label>Available fields:
-                                                <select class="form-control" name="fields" id="fields"></select>
-                                            </label>
-                                            <label>Available operators:
-                                                <select class="form-control" name="operators" id="operators">
-                                                    <option>== (equals)</option>
-                                                    <option>!= (does not equal)</option>
-                                                    <option>~ (contains regex)</option>
-                                                    <option>!~ (does not contain regex)</option>
-                                                    <option>~= (matches regex)</option>
-                                                    <option>!~= (does not match regex)</option>
-                                                    <option>&lt; (less than)</option>
-                                                    <option>&le; (less or equal)</option>
-                                                    <option>&gt; (greater than)</option>
-                                                    <option>&ge; (greater or equal)</option>
-                                                </select>
-                                            </label>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <td colspan="2">Available fields</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Field</td>
+                                                        <td>Possible values</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>MAF</td>
+                                                        <td>0-1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>LoF</td>
+                                                        <td>HC, LC</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>VEST3_rankscore</td>
+                                                        <td>0-1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CADD_raw_rankscore</td>
+                                                        <td>0-1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>DANN_rankscore</td>
+                                                        <td>0-1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Eigen-PC-raw_rankscore</td>
+                                                        <td>0-1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>FATHMM_pred</td>
+                                                        <td>D, T</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>fathmm-MKL_coding_pred</td>
+                                                        <td>D, T</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>PROVEAN_pred</td>
+                                                        <td>D, N</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MetaSVM_pred</td>
+                                                        <td>D, T</td>
+                                                    </tr><tr>
+                                                        <td>MetaLR_pred</td>
+                                                        <td>D, T</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>M-CAP_score</td>
+                                                        <td>0-1</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Polyphen2_HDIV_pred</td>
+                                                        <td>D, P, B</td>
+                                                    </tr><tr>
+                                                        <td>Polyphen2_HVAR_pred</td>
+                                                        <td>D, P, B</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>SIFT_pred</td>
+                                                        <td>D, T</td>
+                                                    </tr><tr>
+                                                        <td>LRT_pred</td>
+                                                        <td>D, N, U</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MutationTaster_pred</td>
+                                                        <td>A, D, N, P</td>
+                                                    </tr><tr>
+                                                        <td>IMPACT</td>
+                                                        <td>HIGH, MODERATE, LOW</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <td colspan="2">Available operators</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Operator</td>
+                                                    <td>Definition</td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>==</td>
+                                                        <td>equals</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>!=</td>
+                                                        <td>does not equal</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>~</td>
+                                                        <td>contains regex</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>!~</td>
+                                                        <td>does not contain regex</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>~=</td>
+                                                        <td>matches regex</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>!~=</td>
+                                                        <td>does not match regex</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&lt;</td>
+                                                        <td>less than</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&le;</td>
+                                                        <td>less or equal</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&gt;</td>
+                                                        <td>greater than</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&ge;</td>
+                                                        <td>greater or equal</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                             Check out predefined masks as examples.
                                         </div>
                                     </div>
