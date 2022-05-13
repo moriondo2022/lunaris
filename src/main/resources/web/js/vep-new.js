@@ -78,8 +78,6 @@ function setSessionId(sessionId) {
     lunarisVariantPredictor.sessionId = sessionId;
 }
 
-// TODO figure out how to save jobs and submit them all as a session
-
 function loadSession(sessionId) {
     fetch("/lunaris/predictor/session/" + sessionId)
         .then((response) => response.json())
@@ -244,8 +242,10 @@ function clearInputs(){
     console.log("Clearing inputs");
     resetFilters();
     document.getElementById("inputfile").value = "";
-    setOutputFormat("-- Choose format --");
-    document.getElementById("hg").value = "-- Choose genome --";
+    // First options on these select boxes are placeholders. We'll restore them.
+    document.getElementById("hg").value = document.querySelector("#hg option").textContent;
+    document.getElementById("formats").value =
+        document.querySelector("#formats option").textContent;
     clearBadges();
 }
 
