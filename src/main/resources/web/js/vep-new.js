@@ -36,7 +36,7 @@ function init() {
 }
 
 function setUpInputDisplays(){
-    let badgeInputs = document.getElementsByClassName("has-badge");
+    const badgeInputs = document.getElementsByClassName("has-badge");
     let badgeInput;
     for (let i = 0; i < badgeInputs.length; i++) {
         badgeInput = badgeInputs[i];
@@ -152,11 +152,20 @@ function isValidEmail(string) {
 
 function showOnBadge(e){
     // is this a good way to do this or not?
-    let inputValue = e.target.value;
-    let badgeId = e.target.getAttribute("id") + "-badge";
-    let badge = document.getElementById(badgeId);
+    const inputValue = e.target.value;
+    const badgeId = e.target.getAttribute("id") + "-badge";
+    const badge = document.getElementById(badgeId);
     if (badge){
         badge.textContent = inputValue;   
+    }
+}
+
+function clearBadges(){
+    const badgeInputs = document.getElementsByClassName("has-badge");
+    for (let badgeInput in badgeInputs){
+        const badgeId = badgeInput.getAttribute("id") + "-badge";
+        const badge = document.getElementById(badgeId)
+        badge.textContent = "";
     }
 }
 
@@ -229,13 +238,22 @@ function createJobFormData(index, email){
 
 function saveJobAndCreateNew(){
     saveJob();
-    // TODO clear all inputs
+    clearInputs();
+}
+
+function clearInputs(){
+    console.log("Clearing inputs");
+    //clearBadges();
+    resetFilters();
+    document.getElementById("inputfile").value = "";
+    setOutputFormat("-- Choose format --");
+    document.getElementById("hg").value = "-- Choose genome --";
 }
 
 function showNewQueuedJob(filter, inputFile, format, hg){
     const newRow = document.createElement("tr");
 
-    const inputFileTd = document.createElement("td");
+    const inputFileTd = document.createElement("td");3
     inputFileTd.innerText = trimFilename(inputFile);
     newRow.append(inputFileTd);
 
@@ -463,12 +481,8 @@ function setOptionsForSelect(selectNode, options) {
     })
 }
 
-function clearFilters() {
-    codeMirror.setValue("");
-}
-
 function resetFilters() {
-    clearFilters();
+    codeMirror.setValue("");
 }
 
 function initMasksSelector() {
