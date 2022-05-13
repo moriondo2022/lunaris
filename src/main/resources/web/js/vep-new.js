@@ -161,11 +161,10 @@ function showOnBadge(e){
 }
 
 function clearBadges(){
-    const badgeInputs = document.getElementsByClassName("has-badge");
-    for (let badgeInput in badgeInputs){
-        const badgeId = badgeInput.getAttribute("id") + "-badge";
-        const badge = document.getElementById(badgeId)
-        badge.textContent = "";
+    const badges = document.getElementsByClassName("badge");
+    for (let i = 0; i < badges.length; i++){
+        console.log(badges[i].textContent);
+        badges[i].textContent = "";
     }
 }
 
@@ -243,11 +242,11 @@ function saveJobAndCreateNew(){
 
 function clearInputs(){
     console.log("Clearing inputs");
-    //clearBadges();
     resetFilters();
     document.getElementById("inputfile").value = "";
     setOutputFormat("-- Choose format --");
     document.getElementById("hg").value = "-- Choose genome --";
+    clearBadges();
 }
 
 function showNewQueuedJob(filter, inputFile, format, hg){
