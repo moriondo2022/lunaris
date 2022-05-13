@@ -107,6 +107,7 @@
                                                     <div data-v-06e3dc2f="">
                                                         <div data-v-06e3dc2f="" class="input-group">
                                                             <select class="form-control has-badge" name="hg" id="hg" placeholder="Choose Genome">
+                                                                <option>-- Choose genome --</option>
                                                                 <option>hg19</option>
                                                                 <option>hg38</option>
                                                             </select>
@@ -206,18 +207,25 @@
                             <div class="placeholder"></div>
                             <label id="output-format">Output format
                                 <select class="form-control has-badge" name="formats" id="formats">
+                                    <option>-- Choose format --</option>
                                     <option value="rareMETALS">list/rareMETALS</option>
                                     <option value="EPACTS">EPACTS</option>
                                 </select>
                             </label>
                             <div class="placeholder"></div>
                         </div>
-                        <div class="centering">
-                            <div class="placeholder"></div>
-                            <button class="btn btn-secondary" onclick="saveJob()">Save job</button>
-                            <button class="btn btn-primary">Save job and create new job</button>
-                            <div class="placeholder"></div>
+                            <div class="centering">
+                                <div class="placeholder"></div>
+                                <button class="btn btn-secondary" onclick="saveJob()">Save job</button>
+                                <button class="btn btn-primary">Save job and create new job</button>
+                                <div class="placeholder">
+                                </div>
                         </div>
+                            <div class="centering">
+                                <div class="placeholder"></div>
+                                <div id="save-job-message"></div>
+                                <div class="placeholder"></div>
+                            </div>
                     </div>
                 </div>
                     <div class="card mb-1">

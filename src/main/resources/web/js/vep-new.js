@@ -173,22 +173,49 @@ function generateEmailMsg(email, isValid){
     setEmailMsg(emailMsg);
 }
 
-function saveJob(){
-    //TODO handle empty fields.
+function setSaveJobMessage(errorMessage){
+    const saveJobMessage = document.getElementById("save-job-message");
+    saveJobMessage.innerText = errorMessage;
+}
 
+function saveJob(){
     const formData = new FormData();
 
-    formData.append("filter", codeMirror.getValue());
-    formData.append("inputFile", getInputFile());
-    formData.append("format", getOutputFormat());
+    const filter = codeMirror.getValue();
+    if (filter == ""){
+        setSaveJobMessage("Select a filter to proceed.");
+        return;
+    }
+
+    const inputFile = getInputFile();
+    if (inputFile == ""){
+        setSaveJobMessage("Select an input file to proceed.");
+        return;
+    }
+
+    const format = getOutputFormat();
+    if (format == ""){
+        setSaveJobMessage("Select an output format to proceed.");
+        return;
+    }
+
+    const hg = getHg();
+    if (hg == ""){
+        setSaveJobMessage("Select a genome to proceed.");
+        return;
+    }
+
+    setSaveJobMessage("");
+
+    formData.append("filter", filter);
+    formData.append("inputFile", inputFile);
+    formData.append("format", format);
     formData.append("session", lunarisVariantPredictor.sessionId);
-    formData.append("hg", getHg());
+    formData.append("hg", hg);
     //formData.append("email", emailInput);
 
     batchJobs.push(formData);
     showNewQueuedJob(formData);
-
-    //TODO update the saved jobs area
 }
 
 function saveJobAndCreateNew(){
@@ -489,7 +516,11 @@ function setOutputFormat(format) {
 }
 
 function getOutputFormat() {
-    return getOutputFormatNode().value;
+    const selection = getOutputFormatNode().value;
+    if (selection == "-- Choose format --"){
+        return "";
+    }
+    return selection;
 }
 
 function getInputFile(){
@@ -497,7 +528,11 @@ function getInputFile(){
 }
 
 function getHg() {
-    return document.getElementById("hg").value;
+    const selection = document.getElementById("hg").value;
+    if (selection == "-- Choose genome --"){
+        return "";
+    }
+    return selection;
 }
 
 function setMask(mask) {
