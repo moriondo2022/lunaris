@@ -184,3 +184,18 @@ li.nav-item {
     background: #efefef;
     font-size: smaller;
 }
+
+.tabpane {
+    display: flex;
+}
+
+.tabpane table {
+    flex: 2;
+    font-size: smaller;
+}
+
+td h6 {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
