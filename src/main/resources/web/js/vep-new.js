@@ -12,7 +12,10 @@ const lunarisVariantPredictor = {
     masksList: []
 }
 
-const batchJobs = [];
+const filters = [];
+const inputFiles = [];
+const refGenomes = [];
+const outputFormats = [];
 
 const codeMirrorConfig = {
     theme: "liquibyte",
@@ -31,7 +34,6 @@ function init() {
     codeMirror.setSize("100%", "7.5em");
     setUpInputDisplays();
 }
-    
 
 function setUpInputDisplays(){
     let badgeInputs = document.getElementsByClassName("has-badge");
@@ -207,15 +209,22 @@ function saveJob(){
 
     setSaveJobMessage("");
 
-    formData.append("filter", filter);
-    formData.append("inputFile", inputFile);
-    formData.append("format", format);
-    formData.append("session", lunarisVariantPredictor.sessionId);
-    formData.append("hg", hg);
-    //formData.append("email", emailInput);
+    filters.push(filter);
+    inputFiles.push(inputFile);
+    outputFormats.push(format);
+    refGenomes.push(hg);
+    showNewQueuedJob(filter, inputFile, format, hg);
+}
 
-    batchJobs.push(formData);
-    showNewQueuedJob(formData);
+function createJobFormData(index, email){
+    const jobFormData = new FormData();
+    jobFormData.append("filter", filters[index]);
+    jobFormData.append("inputFile", inputFiles[index]);
+    jobFormData.append("format", outputFormats[index]);
+    jobFormData.append("session", lunarisVariantPredictor.sessionId);
+    jobFormData.append("hg", refGenomes[index]);
+    jobFormData.append("email", email);
+    return jobFormData;
 }
 
 function saveJobAndCreateNew(){
@@ -223,23 +232,23 @@ function saveJobAndCreateNew(){
     // TODO clear all inputs
 }
 
-function showNewQueuedJob(formData){
+function showNewQueuedJob(filter, inputFile, format, hg){
     const newRow = document.createElement("tr");
 
     const inputFileTd = document.createElement("td");
-    inputFileTd.innerText = trimFilename(formData.get("inputFile"));
+    inputFileTd.innerText = trimFilename(inputFile);
     newRow.append(inputFileTd);
 
     const hgTd = document.createElement("td");
-    hgTd.innerText = formData.get("hg");
+    hgTd.innerText = hg;
     newRow.append(hgTd);
 
     const maskTd = document.createElement("td");
-    maskTd.innerText = "How do we display this?";//formData.get();
+    maskTd.innerText = filter;
     newRow.append(maskTd);
 
     const formatTd = document.createElement("td");
-    formatTd.innerText = formData.get("format");
+    formatTd.innerText = format;
     newRow.append(formatTd);
 
     const submitTableBody = document.getElementById("submit-table-body");
@@ -256,7 +265,6 @@ function trimFilename(longFilename){
 }
 
 function submitAll(){
-    const inputFile = document.getElementById("inputfile".files[0]);
     const emailInput = document.getElementById("email").value;
 
     // As of now, must have email in order to submit.
@@ -271,56 +279,26 @@ function submitAll(){
         generateEmailMsg(emailInput, false);
         return;
     }
-    //TODO figure out what add temporary status even means.
-    addTemporaryStatus(inputFile);
+
+    for (let i = 0; i < inputFiles.length; i++){
+        const formData = createJobFormData(i, emailInput);
+        const inputFile = inputFiles[i];
+        console.log("Submitting " + formData);
+        fetch("/lunaris/predictor/upload", {method: "POST", body: formData})
+            .then((response) => {
+                removeTemporaryStatus();
+                if (!response.ok) {
+                    throw "Could not submit " + inputFile.name + ": " + response.statusText;
+                }
+                return response.text();
+            })
+            .then((id) => {
+                addStatusEntry(inputFile.name, id);
+                getStatus(id);
+            }).catch(showCouldNotSubmit);
+    }
 }
 
-function submit() {
-    const inputFile = document.getElementById("inputfile").files[0];
-    const emailField = document.getElementById("email");
-    const emailInput = emailField.value;
-    
-    let email;
-
-    if (emailInput == ""){
-        setEmailMsg("Enter your email to continue.");
-        return;
-    }
-
-    if(isValidEmail(emailInput)) {
-        email = emailInput;
-        lunarisVariantPredictor.email = email;
-        generateEmailMsg(emailInput, true);
-    } else {
-        generateEmailMsg(emailInput, false);
-        return;
-    }
-
-    addTemporaryStatus(inputFile);
-
-    const formData = new FormData();
-
-    formData.append("filter", codeMirror.getValue());
-    formData.append("inputFile", inputFile);
-    formData.append("format", getOutputFormat());
-    formData.append("session", lunarisVariantPredictor.sessionId);
-    formData.append("hg", getHg());
-    if(email) {
-        formData.append("email", email);
-    }
-    fetch("/lunaris/predictor/upload", {method: "POST", body: formData})
-        .then((response) => {
-            removeTemporaryStatus();
-            if (!response.ok) {
-                throw "Could not submit " + inputFile.name + ": " + response.statusText;
-            }
-            return response.text();
-        })
-        .then((id) => {
-            addStatusEntry(inputFile.name, id);
-            getStatus(id);
-        }).catch(showCouldNotSubmit);
-}
 
 const tempStatusNodeId = "tempStatusNode";
 
