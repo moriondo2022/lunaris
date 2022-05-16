@@ -220,6 +220,7 @@ function saveJob(){
     outputFormats.push(format);
     refGenomes.push(hg);
     showNewQueuedJob(filter, inputFile, format, hg);
+    setEmailMsg("");
     return true;
 }
 
@@ -289,6 +290,10 @@ function trimFilename(longFilename){
 function submitAll(){
     const emailInput = document.getElementById("email").value;
 
+    if (inputFiles.length == 0){
+        setEmailMsg("There are no jobs queued for submission.");
+        return;
+    }
     // As of now, must have email in order to submit.
     if (emailInput == ""){
         setEmailMsg("Enter your email to continue.");
