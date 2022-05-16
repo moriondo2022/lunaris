@@ -192,25 +192,25 @@ function saveJob(){
     const filter = codeMirror.getValue();
     if (filter == ""){
         setSaveJobMessage("Select a filter to proceed.");
-        return;
+        return false;
     }
 
     const inputFile = getInputFile();
     if (inputFile == ""){
         setSaveJobMessage("Select an input file to proceed.");
-        return;
+        return false;
     }
 
     const format = getOutputFormat();
     if (format == ""){
         setSaveJobMessage("Select an output format to proceed.");
-        return;
+        return false;
     }
 
     const hg = getHg();
     if (hg == ""){
         setSaveJobMessage("Select a genome to proceed.");
-        return;
+        return false;
     }
 
     setSaveJobMessage("");
@@ -220,6 +220,7 @@ function saveJob(){
     outputFormats.push(format);
     refGenomes.push(hg);
     showNewQueuedJob(filter, inputFile, format, hg);
+    return true;
 }
 
 function createJobFormData(index, email){
@@ -234,8 +235,10 @@ function createJobFormData(index, email){
 }
 
 function saveJobAndCreateNew(){
-    saveJob();
-    clearInputs();
+    if (saveJob()){
+        // We don't want to clear the mask someone may have entered if they missed a field and it didn't save.
+        clearInputs();
+    }
 }
 
 function clearInputs(){
@@ -246,6 +249,8 @@ function clearInputs(){
     document.getElementById("hg").value = document.querySelector("#hg option").textContent;
     document.getElementById("formats").value =
         document.querySelector("#formats option").textContent;
+    document.getElementById("masks").value =
+        document.querySelector("#masks option").textContent;
     clearBadges();
 }
 
