@@ -290,9 +290,15 @@ function trimFilename(longFilename){
 
 function submitAll(){
     const emailInput = document.getElementById("email").value;
+    const descriptionInput = document.getElementById("session-desc").value;
 
     if (inputFiles.length == 0){
         setEmailMsg("There are no jobs queued for submission.");
+        return;
+    }
+
+    if (descriptionInput == ""){
+        setEmailMsg("Enter a description for this session in order to continue.");
         return;
     }
     // As of now, must have email in order to submit.
