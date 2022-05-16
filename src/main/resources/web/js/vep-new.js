@@ -42,7 +42,8 @@ function setUpInputDisplays(){
         badgeInput = badgeInputs[i];
         badgeInput.onchange = showOnBadge;
     }
-
+    let maskInput = document.getElementById("masks");
+    maskInput.onchange = setPredefinedMask;
 }
 
 function fourHexDigits(num) {
@@ -520,7 +521,7 @@ function setMask(mask) {
     codeMirror.setValue(mask);
 }
 
-function setPredefinedMask() {
+function setPredefinedMask(e) {
     const maskSelectNode = getMaskSelectNode();
     const maskName = maskSelectNode.value;
     fetch("/lunaris/predictor/masks/" + maskName)
@@ -528,5 +529,6 @@ function setPredefinedMask() {
         .then((mask) => {
             setMask(mask);
         });
+    showOnBadge(e);
 }
 
