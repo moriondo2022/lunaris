@@ -524,6 +524,9 @@ function getHg() {
 }
 
 function setMask(mask) {
+    if (mask.slice(0, 5) == "ERROR"){
+        mask = "";
+    }
     codeMirror.setValue(mask);
 }
 
@@ -535,6 +538,5 @@ function setPredefinedMask(e) {
         .then((mask) => {
             setMask(mask);
         });
-    showOnBadge(e);
 }
 
