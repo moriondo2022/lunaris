@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 
+
 image=lunaris-variant-mask-server:3.7.3
-lunaris_vep_dir=$HOME/lunaris/vep
+lunaris_vep_dir=/home/oliverr/lunaris/vep
+
 inputs_dir=$lunaris_vep_dir/inputs
 results_dir=$lunaris_vep_dir/results
 aux_dir=$lunaris_vep_dir/aux
 data_dir=$lunaris_vep_dir/data
 work_dir=$lunaris_vep_dir/work
-cache_dir=$HOME/.vep
+cache_dir=/home/oliverr/.vep
 
 echo "This is Lunaris Variant Mask Server Docker run script"
-
 echo "But first, if not done already, building image ${image}."
 sudo docker build vep/docker/ -t ${image}
 
