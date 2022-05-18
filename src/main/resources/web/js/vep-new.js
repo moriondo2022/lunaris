@@ -190,6 +190,7 @@ function setSaveJobMessage(errorMessage){
 function maskDisplayText(currentMask){
     console.log(currentMask);
     const maskName = getMaskSelectNode().value;
+    console.log("Mask name: " + maskName);
     let predefinedMask = "";
     fetch("/lunaris/predictor/masks/" + maskName)
         .then((response) => response.text())
