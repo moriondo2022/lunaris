@@ -26,6 +26,7 @@ let codeMirror;
 
 
 function init() {
+    console.log("if you can read this, there should be mask feedback");
     initSession();
     getSchema();
     initMasksSelector();
