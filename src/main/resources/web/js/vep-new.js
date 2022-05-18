@@ -26,7 +26,6 @@ let codeMirror;
 
 
 function init() {
-    console.log("if you can read this, there should be mask feedback");
     initSession();
     getSchema();
     initMasksSelector();
@@ -190,7 +189,7 @@ function setSaveJobMessage(errorMessage){
 
 function maskDisplayText(currentMask){
     console.log(currentMask);
-    const maskName = getMaskSelectNode.value;
+    const maskName = getMaskSelectNode().value;
     let predefinedMask = "";
     fetch("/lunaris/predictor/masks/" + maskName)
         .then((response) => response.text())
