@@ -326,6 +326,7 @@ function submitAll(){
                 return response.text();
             })
             .then((id) => {
+                // TODO figure out everything to do with id. does this mean session id?
                 addStatusEntry(inputFile.name, id);
                 getStatus(id);
             }).catch(showCouldNotSubmit);
@@ -355,7 +356,7 @@ function getStatusAreaNode() {
 }
 
 function getSubmissionAreaNode() {
-    return document.getElementById("submission_area");
+    return document.getElementById("submission-area");
 }
 
 function showCouldNotSubmit(message) {
@@ -368,25 +369,22 @@ function showCouldNotSubmit(message) {
 function addStatusEntry(inputFileName, id) {
     lunarisVariantPredictor.inputFileNames[id] = inputFileName;
     lunarisVariantPredictor.idsPending.push(id);
-    const divNode = document.createElement("div");
-    const pNode = document.createElement("p");
-    divNode.appendChild(pNode);
+    const statusRow = document.createElement("tr");
     const statusAreaNode = getSubmissionAreaNode();
     const placeholder = document.getElementById("statusUpdatesPlaceholder");
     if(placeholder) {
-        statusAreaNode.removeChild(placeholder);
+        placeholder.innerText = "";
     }
-    statusAreaNode.insertAdjacentElement("afterbegin", divNode);
-    divNode.setAttribute("id", id)
-    showInitialStatus(divNode, inputFileName);
+    statusAreaNode.appendChild(statusRow);
+    statusRow.appendChild(document.createElement("td"));
+    statusRow.setAttribute("id", id);
+    showInitialStatus(statusRow, inputFileName);
 }
 
-function showInitialStatus(divNode, inputFileName) {
-    const pNode = divNode.getElementsByTagName("p")[0];
-    if(pNode) {
-        pNode.innerText = "";
-        const textNode = document.createTextNode("Submitted " + inputFileName + ", waiting for result.");
-        pNode.append(textNode);
+function showInitialStatus(statusRow, inputFileName) {
+    const dataNode = statusRow.getElementsByTagName("td")[0];
+    if(dataNode) {
+        dataNode.innerText = "Submitted " + inputFileName + ", waiting for result.";
     }
 }
 
