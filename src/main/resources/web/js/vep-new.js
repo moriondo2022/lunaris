@@ -195,6 +195,7 @@ function maskDisplayText(currentMask){
     fetch("/lunaris/predictor/masks/" + maskName)
         .then((response) => response.text())
         .then((mask) => {
+            console.log("Mask is: " + mask);
             predefinedMask = mask;
         });
     console.log(predefinedMask);
