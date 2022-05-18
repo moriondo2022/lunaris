@@ -202,7 +202,6 @@ function maskDisplayText(currentMask){
             }
             return "Custom";
         });
-    return "If you can read this there's been an error";
 }
 
 function saveJob(){
