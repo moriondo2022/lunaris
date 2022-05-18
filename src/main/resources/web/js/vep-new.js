@@ -197,12 +197,12 @@ function maskDisplayText(currentMask){
         .then((mask) => {
             console.log("Mask is: " + mask);
             predefinedMask = mask;
+            if (currentMask == predefinedMask){
+                return maskName;
+            }
+            return "Custom";
         });
-    console.log(predefinedMask);
-    if (currentMask == predefinedMask){
-        return maskName;
-    }
-    return "Custom";
+    return "If you can read this there's been an error";
 }
 
 function saveJob(){
