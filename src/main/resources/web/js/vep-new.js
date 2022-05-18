@@ -188,6 +188,7 @@ function setSaveJobMessage(errorMessage){
 }
 
 function maskDisplayText(currentMask){
+    console.log(currentMask);
     const maskName = getMaskSelectNode.value;
     let predefinedMask = "";
     fetch("/lunaris/predictor/masks/" + maskName)
@@ -195,6 +196,7 @@ function maskDisplayText(currentMask){
         .then((mask) => {
             predefinedMask = mask;
         });
+    console.log(predefinedMask);
     if (currentMask == predefinedMask){
         return maskName;
     }
