@@ -187,6 +187,20 @@ function setSaveJobMessage(errorMessage){
     saveJobMessage.innerText = errorMessage;
 }
 
+function maskDisplayText(currentMask){
+    const maskName = getMaskSelectNode.value;
+    let predefinedMask = "";
+    fetch("/lunaris/predictor/masks/" + maskName)
+        .then((response) => response.text())
+        .then((mask) => {
+            predefinedMask = mask;
+        });
+    if (currentMask == predefinedMask){
+        return maskName;
+    }
+    return "Custom";
+}
+
 function saveJob(){
     const formData = new FormData();
 
@@ -268,7 +282,7 @@ function showNewQueuedJob(filter, inputFile, format, hg){
     newRow.append(hgTd);
 
     const maskTd = document.createElement("td");
-    maskTd.innerText = filter;
+    maskTd.innerText = maskDisplayText(filter);
     newRow.append(maskTd);
 
     const formatTd = document.createElement("td");
