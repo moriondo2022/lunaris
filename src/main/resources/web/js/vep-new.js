@@ -270,7 +270,7 @@ function showNewQueuedJob(filter, inputFile, format, hg){
     newRow.append(hgTd);
 
     const maskTd = document.createElement("td");
-    maskTd.innerText = maskDisplayText(filter);
+    maskTd.innerText = filter;
     newRow.append(maskTd);
 
     const formatTd = document.createElement("td");
