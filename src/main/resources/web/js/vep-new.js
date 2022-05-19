@@ -220,7 +220,9 @@ function saveJob(){
     inputFiles.push(inputFile);
     outputFormats.push(format);
     refGenomes.push(hg);
-    showNewQueuedJob(filter, inputFile, format, hg);
+
+    const maskName = getMaskSelectNode().value;
+    showNewQueuedJob(maskName, inputFile, format, hg);
     setEmailMsg("");
     return true;
 }
