@@ -187,22 +187,6 @@ function setSaveJobMessage(errorMessage){
     saveJobMessage.innerText = errorMessage;
 }
 
-function maskDisplayText(currentMask){
-    console.log(currentMask);
-    const maskName = getMaskSelectNode().value;
-    let predefinedMask = "";
-    fetch("/lunaris/predictor/masks/" + maskName)
-        .then((response) => response.text())
-        .then((mask) => {
-            predefinedMask = mask;
-        });
-    console.log(predefinedMask);
-    if (currentMask == predefinedMask){
-        return maskName;
-    }
-    return "Custom";
-}
-
 function saveJob(){
     const formData = new FormData();
 
@@ -236,7 +220,9 @@ function saveJob(){
     inputFiles.push(inputFile);
     outputFormats.push(format);
     refGenomes.push(hg);
-    showNewQueuedJob(filter, inputFile, format, hg);
+
+    const maskName = getMaskSelectNode().value;
+    showNewQueuedJob(maskName, inputFile, format, hg);
     setEmailMsg("");
     return true;
 }
