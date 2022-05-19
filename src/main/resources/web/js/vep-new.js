@@ -71,7 +71,7 @@ function initSession() {
         sessionId =
             fourHexDigits((new Date).getTime() % 65536) + fourHexDigits(Math.floor(Math.random() * 65537));
         setSessionId(sessionId);
-        setEmptySubmissionArea();
+        //setEmptySubmissionArea();
     }
 }
 
@@ -360,7 +360,7 @@ function getStatusAreaNode() {
 }
 
 function getSubmissionAreaNode() {
-    return document.getElementById("submission-area");
+    return document.getElementById("submission_area");
 }
 
 function showCouldNotSubmit(message) {
