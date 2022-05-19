@@ -13,6 +13,7 @@ const lunarisVariantPredictor = {
 }
 
 const filters = [];
+const filterNames = []
 const inputFiles = [];
 const refGenomes = [];
 const outputFormats = [];
@@ -217,6 +218,7 @@ function saveJob(){
     setSaveJobMessage("");
 
     filters.push(filter);
+    filterNames.push(getMaskSelectNode().value); // TODO evaluate in case this is custom
     inputFiles.push(inputFile);
     outputFormats.push(format);
     refGenomes.push(hg);
@@ -329,7 +331,7 @@ function submitAll(){
             })
             .then((id) => {
                 // TODO figure out everything to do with id. does this mean session id?
-                addStatusEntry(inputFile.name, id);
+                addStatusEntry(inputFile.name, id, i);
                 getStatus(id);
             }).catch(showCouldNotSubmit);
     }
@@ -368,7 +370,7 @@ function showCouldNotSubmit(message) {
     statusAreaNode.append(pNode);
 }
 
-function addStatusEntry(inputFileName, id) {
+function addStatusEntry(inputFileName, id, jobIndex) {
     lunarisVariantPredictor.inputFileNames[id] = inputFileName;
     lunarisVariantPredictor.idsPending.push(id);
     const statusRow = document.createElement("tr");
@@ -378,16 +380,35 @@ function addStatusEntry(inputFileName, id) {
         placeholder.innerText = "";
     }
     statusAreaNode.appendChild(statusRow);
-    statusRow.appendChild(document.createElement("td"));
     statusRow.setAttribute("id", id);
-    showInitialStatus(statusRow, inputFileName);
+    showInitialStatus(statusRow, inputFileName, jobIndex);
 }
 
-function showInitialStatus(statusRow, inputFileName) {
-    const dataNode = statusRow.getElementsByTagName("td")[0];
-    if(dataNode) {
-        dataNode.innerText = "Submitted " + inputFileName + ", waiting for result.";
-    }
+function showInitialStatus(statusRow, inputFileName, jobIndex) {
+    // Include the file name, reference genome, mask filter, output format, and restore link
+    const inputFileCell = document.createElement("td");
+    inputFileCell.innerText = inputFileName;
+    statusRow.appendChild(inputFileCell);
+
+    const refGenomeCell = document.createElement("td");
+    refGenomeCell.innerText = refGenomes[jobIndex];
+    statusRow.appendChild(refGenomeCell);
+
+    const filterNameCell = document.createElement("td");
+    filterNameCell.innerText = filterNames[jobIndex];
+    statusRow.appendChild(filterNameCell);
+
+    const outputFormatCell = document.createElement("td");
+    outputFormatCell.innerText = outputFormats[jobIndex];
+    statusRow.appendChild(outputFormatCell);
+
+    const outputFileCell = document.createElement("td");
+    outputFileCell.innerText = "Processing...";
+    statusRow.appendChild(outputFileCell);
+
+    const restoreJobCell = document.createElement("td");
+    restoreJobCell.innerHTML = "<a>Restore</a>";
+    statusRow.appendChild(restoreJobCell);
 }
 
 function getStatus(id) {
