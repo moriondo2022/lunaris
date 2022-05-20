@@ -454,7 +454,8 @@ function showStatus(id) {
         const snagMessages = status.snagMessages;
         const nSnags = snagMessages.length;
         if(nSnags) {
-            const snagNode = document.createTextNode(" " + soManyErrors(nSnags));
+            console.log(soManyErrors(nSnags));
+            /*const snagNode = document.createTextNode(" " + soManyErrors(nSnags));
             const snagNodeSpan = document.createElement("span");
             snagNodeSpan.style.color = "red";
             snagNodeSpan.appendChild(snagNode)
@@ -470,7 +471,7 @@ function showStatus(id) {
                 snagsDivNode.style.overflowY = "scroll";
                 snagsDivNode.style.color = "red";
                 statusRow.appendChild(snagsDivNode);
-            }
+            }*/
         }
     } else {
         showInitialStatus(statusRow, inputFileName);
