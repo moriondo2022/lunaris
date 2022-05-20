@@ -364,10 +364,11 @@ function getSubmissionAreaNode() {
 }
 
 function showCouldNotSubmit(message) {
-    const pNode = document.createElement("p");
+    /*const pNode = document.createElement("p");
     pNode.innerText = message;
     const statusAreaNode = getSubmissionAreaNode();
-    statusAreaNode.append(pNode);
+    statusAreaNode.append(pNode);*/
+    console.log(message);
 }
 
 function addStatusEntry(inputFileName, id, jobIndex) {
