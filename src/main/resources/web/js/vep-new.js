@@ -405,6 +405,7 @@ function showInitialStatus(statusRow, inputFileName, jobIndex) {
 
     const outputFileCell = document.createElement("td");
     outputFileCell.innerText = "Processing...";
+    outputFileCell.setAttribute("class", "output-file");
     statusRow.appendChild(outputFileCell);
 
     const restoreJobCell = document.createElement("td");
@@ -432,23 +433,23 @@ function soManyErrors(nSnags) {
 }
 
 function showStatus(id) {
-    const divNode = document.getElementById(id);
-    const pNode = divNode.getElementsByTagName("p")[0]
+    const statusRow = document.getElementById(id);
+    const outputFileCell = statusRow.getElementsByClassName("output-file")[0];
     const inputFileName = lunarisVariantPredictor.inputFileNames[id];
     const status = lunarisVariantPredictor.statuses[id];
     if (status) {
-        const textNode = document.createTextNode(inputFileName + ": " + status.message);
-        pNode.innerText = "";
-        pNode.append(textNode);
+        //const textNode = document.createTextNode(inputFileName + ": " + status.message);
+        //outputFileCell.innerText = "";
+        //outputFileCell.append(textNode);
         if (status.succeeded) {
-            const spaceNode = document.createTextNode(" ");
+            //const spaceNode = document.createTextNode(" ");
             const linkNode = document.createElement("a");
             const outputFile = id + ".tsv"
             linkNode.setAttribute("href", "/lunaris/predictor/results/" + outputFile);
             linkNode.setAttribute("download", outputFile);
             linkNode.innerText = "Click here to download";
-            pNode.append(spaceNode);
-            pNode.append(linkNode);
+            //outputFileCell.append(spaceNode);
+            outputFileCell.append(linkNode);
         }
         const snagMessages = status.snagMessages;
         const nSnags = snagMessages.length;
@@ -457,9 +458,9 @@ function showStatus(id) {
             const snagNodeSpan = document.createElement("span");
             snagNodeSpan.style.color = "red";
             snagNodeSpan.appendChild(snagNode)
-            pNode.append(snagNodeSpan);
+            outputFileCell.append(snagNodeSpan);
             const snagMessagesClass = "snagMessages";
-            if(!divNode.getElementsByClassName(snagMessagesClass).length) {
+            if(!statusRow.getElementsByClassName(snagMessagesClass).length) {
                 const snagsDivNode = document.createElement("div");
                 snagsDivNode.innerText = snagMessages.join("\n");
                 snagsDivNode.classList.add(snagMessagesClass);
@@ -468,11 +469,11 @@ function showStatus(id) {
                 snagsDivNode.style.margin = "auto";
                 snagsDivNode.style.overflowY = "scroll";
                 snagsDivNode.style.color = "red";
-                divNode.appendChild(snagsDivNode);
+                statusRow.appendChild(snagsDivNode);
             }
         }
     } else {
-        showInitialStatus(divNode, inputFileName);
+        showInitialStatus(statusRow, inputFileName);
     }
 }
 
