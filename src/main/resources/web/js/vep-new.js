@@ -321,7 +321,6 @@ function submitAll(){
     for (let i = 0; i < inputFiles.length; i++){
         const formData = createJobFormData(i, emailInput);
         const inputFile = inputFiles[i];
-        console.log("Submitting " + formData);
         fetch("/lunaris/predictor/upload", {method: "POST", body: formData})
             .then((response) => {
                 if (!response.ok) {
@@ -331,7 +330,8 @@ function submitAll(){
             })
             .then((id) => {
                 // TODO figure out everything to do with id. does this mean session id?
-                addStatusEntry(inputFile.name, id, i);
+                //addStatusEntry(inputFile.name, id, i);
+                addStatusEntry(inputFile, id, i);
                 getStatus(id);
             }).catch(showCouldNotSubmit);
     }
