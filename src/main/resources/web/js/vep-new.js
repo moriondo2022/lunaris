@@ -321,16 +321,17 @@ function submitAll(){
     for (let i = 0; i < inputFiles.length; i++){
         const formData = createJobFormData(i, emailInput);
         const inputFile = inputFiles[i];
+        // TODO ACCOUNT for multiple fetch requests - this is a loop
         fetch("/lunaris/predictor/upload", {method: "POST", body: formData})
             .then((response) => {
                 if (!response.ok) {
-                    throw "Could not submit " + inputFile.name + ": " + response.statusText;
+                    throw "Could not submit " + inputFile + ": " + response.statusText;
                 }
                 return response.text();
             })
             .then((id) => {
-                // TODO figure out everything to do with id. does this mean session id?
-                //addStatusEntry(inputFile.name, id, i);
+                console.log("ID is: " + id);
+                // ID is something returned from the server. It's not coming through.
                 addStatusEntry(inputFile, id, i);
                 getStatus(id);
             }).catch(showCouldNotSubmit);
