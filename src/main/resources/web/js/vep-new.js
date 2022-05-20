@@ -532,7 +532,7 @@ function getOutputFormat() {
 }
 
 function getInputFile(){
-    return document.getElementById("inputfile").value;
+    return document.getElementById("inputfile").files[0];
 }
 
 function getHg() {
