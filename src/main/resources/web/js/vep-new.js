@@ -383,6 +383,7 @@ function addStatusEntry(inputFileName, id, jobIndex) {
     statusAreaNode.appendChild(statusRow);
     statusRow.setAttribute("id", id);
     showInitialStatus(statusRow, inputFileName, jobIndex);
+    console.log("Very first time adding status for: " + inputFileName);
 }
 
 function showInitialStatus(statusRow, inputFileName, jobIndex) {
@@ -438,24 +439,18 @@ function showStatus(id) {
     const inputFileName = lunarisVariantPredictor.inputFileNames[id];
     const status = lunarisVariantPredictor.statuses[id];
     if (status) {
-        //const textNode = document.createTextNode(inputFileName + ": " + status.message);
-        //outputFileCell.innerText = "";
-        //outputFileCell.append(textNode);
         if (status.succeeded) {
-            //const spaceNode = document.createTextNode(" ");
             const linkNode = document.createElement("a");
             const outputFile = id + ".tsv"
             linkNode.setAttribute("href", "/lunaris/predictor/results/" + outputFile);
             linkNode.setAttribute("download", outputFile);
             linkNode.innerText = "Click here to download";
-            //outputFileCell.append(spaceNode);
             outputFileCell.append(linkNode);
         }
         const snagMessages = status.snagMessages;
         const nSnags = snagMessages.length;
-        if(nSnags) {
-            console.log(soManyErrors(nSnags));
-            /*const snagNode = document.createTextNode(" " + soManyErrors(nSnags));
+        /*if(nSnags) {
+            const snagNode = document.createTextNode(" " + soManyErrors(nSnags));
             const snagNodeSpan = document.createElement("span");
             snagNodeSpan.style.color = "red";
             snagNodeSpan.appendChild(snagNode)
@@ -471,8 +466,8 @@ function showStatus(id) {
                 snagsDivNode.style.overflowY = "scroll";
                 snagsDivNode.style.color = "red";
                 statusRow.appendChild(snagsDivNode);
-            }*/
-        }
+            }
+        }*/
     } else {
         showInitialStatus(statusRow, inputFileName);
     }
