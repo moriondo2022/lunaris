@@ -444,17 +444,20 @@ function showStatus(id) {
     const status = lunarisVariantPredictor.statuses[id];
     if (status) {
         if (status.succeeded) {
+            console.log("Success for " + id);
             const linkNode = document.createElement("a");
             const outputFile = id + ".tsv"
             linkNode.setAttribute("href", "/lunaris/predictor/results/" + outputFile);
             linkNode.setAttribute("download", outputFile);
             linkNode.innerText = "Click here to download";
+            outputFileCell.innerHTML = "";
             outputFileCell.append(linkNode);
         }
         const snagMessages = status.snagMessages;
         const nSnags = snagMessages.length;
-        /*if(nSnags) {
-            const snagNode = document.createTextNode(" " + soManyErrors(nSnags));
+        if(nSnags) {
+            console.log(nSnags);
+            /*const snagNode = document.createTextNode(" " + soManyErrors(nSnags));
             const snagNodeSpan = document.createElement("span");
             snagNodeSpan.style.color = "red";
             snagNodeSpan.appendChild(snagNode)
@@ -470,8 +473,8 @@ function showStatus(id) {
                 snagsDivNode.style.overflowY = "scroll";
                 snagsDivNode.style.color = "red";
                 statusRow.appendChild(snagsDivNode);
-            }
-        }*/
+            }*/
+        }
     } else {
         showInitialStatus(statusRow, inputFileName);
     }
