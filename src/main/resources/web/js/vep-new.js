@@ -335,7 +335,7 @@ function submitAll(){
             })
             .then((id) => {
                 addStatusEntry(inputFile, id, i);
-                getStatus(id);
+                //getStatus(id);
             }).catch(showCouldNotSubmit);
     }
 }
@@ -422,7 +422,6 @@ function getStatus(id) {
         .then((status) => {
             lunarisVariantPredictor.statuses[id] = status;
             showStatus(id);
-            console.log("Getting status for " + id);
         });
 }
 
