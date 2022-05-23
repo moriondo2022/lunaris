@@ -486,7 +486,7 @@ function updatePendingStatuses() {
     while (i < idsPending.length) {
         const id = idsPending[i];
         getStatus(id);
-        showStatus(id);
+        //showStatus(id);
         const status = lunarisVariantPredictor.statuses[id];
         if (!status.completed) {
             idsPendingNew.push(id);
