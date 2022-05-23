@@ -436,7 +436,6 @@ function clearStatusArea(){
 
 function prepStatusRow(id){
     const statusRow = document.getElementById(id);
-    statusRow.innerHTML = "";
 
     const inputFileCell = document.createElement("td");
     inputFileCell.innerText = lunarisVariantPredictor.inputFileNames[id];
@@ -464,8 +463,10 @@ function prepStatusRow(id){
 }
 
 function showStatus(id) {
-    prepStatusRow(id);
     const statusRow = document.getElementById(id);
+    if (statusRow.innerHTML == ""){
+        prepStatusRow(id);
+    }
     let outputFileCell = statusRow.getElementsByClassName("output-file")[0];
 
     const status = lunarisVariantPredictor.statuses[id];
