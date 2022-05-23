@@ -334,8 +334,6 @@ function submitAll(){
                 return response.text();
             })
             .then((id) => {
-                console.log("ID is: " + id);
-                // ID is something returned from the server. It's not coming through.
                 addStatusEntry(inputFile, id, i);
                 getStatus(id);
             }).catch(showCouldNotSubmit);
@@ -424,6 +422,7 @@ function getStatus(id) {
         .then((status) => {
             lunarisVariantPredictor.statuses[id] = status;
             showStatus(id);
+            console.log("Getting status for " + id);
         });
 }
 
