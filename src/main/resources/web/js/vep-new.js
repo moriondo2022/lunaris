@@ -289,6 +289,8 @@ function trimFilename(inputFile){
 }
 
 function submitAll(){
+    clearStatusArea();
+
     const emailInput = document.getElementById("email").value;
     const descriptionInput = document.getElementById("session-desc").value;
 
@@ -428,8 +430,13 @@ function soManyErrors(nSnags) {
     }
 }
 
+function clearStatusArea(){
+    document.getElementById("submission_area").innerHTML = "";
+}
+
 function prepStatusRow(id){
     const statusRow = document.getElementById(id);
+    statusRow.innerHTML = "";
 
     const inputFileCell = document.createElement("td");
     inputFileCell.innerText = lunarisVariantPredictor.inputFileNames[id];
