@@ -81,6 +81,7 @@ function setSessionId(sessionId) {
 }
 
 function loadSession(sessionId) {
+    document.getElementById("submission_area").innerHTML = "";
     fetch("/lunaris/predictor/session/" + sessionId)
         .then((response) => response.json())
         .then((session) => {
@@ -95,7 +96,6 @@ function loadSession(sessionId) {
                 if(session.format) {
                     setOutputFormat(session.format);
                 }
-                setEmptySubmissionArea();
                 session.jobs.forEach(job => {
                     const id = job.id;
                     const path = job.inputFile;
@@ -127,13 +127,6 @@ function setSessionMsg(msg) {
     const sessionArea = document.getElementById("session-invalid");
     sessionArea.textContent = msg;
 }
-
-function setEmptySubmissionArea() {
-    const submissionArea = document.getElementById("submission_area");
-    submissionArea.innerHTML =
-        "<span id=\"statusUpdatesPlaceholder\">(Submission status updates will appear here)</span>";
-}
-
 setInterval(updatePendingStatuses, 300);
 
 function isValidEmail(string) {
@@ -151,7 +144,6 @@ function isValidEmail(string) {
 }
 
 function showOnBadge(e){
-    // is this a good way to do this or not?
     const inputValue = e.target.value;
     const badgeId = e.target.getAttribute("id") + "-badge";
     const badge = document.getElementById(badgeId);
@@ -436,14 +428,39 @@ function soManyErrors(nSnags) {
     }
 }
 
+function prepStatusRow(id){
+    const statusRow = document.getElementById(id);
+
+    const inputFileCell = document.createElement("td");
+    inputFileCell.innerText = lunarisVariantPredictor.inputFileNames[id];
+    statusRow.appendChild(inputFileCell);
+
+    const refGenomeCell = document.createElement("td");
+    refGenomeCell.innerText = "Reference genome placeholder";
+    statusRow.appendChild(refGenomeCell);
+
+    const maskCell = document.createElement("td");
+    maskCell.innerText = "Mask placeholder";
+    statusRow.appendChild(maskCell);
+
+    const outputFormatCell = document.createElement("td");
+    outputFormatCell.innerText = "Output format placeholder";
+    statusRow.appendChild(outputFormatCell);
+
+    const outputFileCell = document.createElement("td");
+    outputFileCell.setAttribute("class", "output-file")
+    statusRow.appendChild(outputFileCell);
+
+    const restoreJobCell = document.createElement("td");
+    restoreJobCell.innerText = "Restore";
+    statusRow.appendChild(restoreJobCell);
+}
+
 function showStatus(id) {
+    prepStatusRow(id);
     const statusRow = document.getElementById(id);
     let outputFileCell = statusRow.getElementsByClassName("output-file")[0];
-    if (!outputFileCell){
-      outputFileCell = document.createElement("td");
-      statusRow.appendChild(outputFileCell);
-    }
-    const inputFileName = lunarisVariantPredictor.inputFileNames[id];
+
     const status = lunarisVariantPredictor.statuses[id];
     if (status) {
         if (status.succeeded) {
@@ -479,7 +496,7 @@ function showStatus(id) {
             }*/
         }
     } else {
-        showInitialStatus(statusRow, inputFileName);
+        showInitialStatus(statusRow, lunarisVariantPredictor.inputFileNames[id]);
     }
 }
 
@@ -490,7 +507,6 @@ function updatePendingStatuses() {
     while (i < idsPending.length) {
         const id = idsPending[i];
         getStatus(id);
-        //showStatus(id);
         const status = lunarisVariantPredictor.statuses[id];
         if (!status.completed) {
             idsPendingNew.push(id);
