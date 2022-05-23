@@ -156,14 +156,18 @@ function showOnBadge(e){
     const badgeId = e.target.getAttribute("id") + "-badge";
     const badge = document.getElementById(badgeId);
     if (badge){
-        badge.textContent = inputValue;   
+        badge.textContent = inputValue;
     }
+    if (badgeId == "inputfile-badge"){
+        const retrieveText = badge.textContent;
+        badge.textContent = retrieveText.split("\\").pop();
+    }
+
 }
 
 function clearBadges(){
     const badges = document.getElementsByClassName("badge");
     for (let i = 0; i < badges.length; i++){
-        console.log(badges[i].textContent);
         badges[i].textContent = "";
     }
 }
@@ -248,7 +252,6 @@ function saveJobAndCreateNew(){
 }
 
 function clearInputs(){
-    console.log("Clearing inputs");
     resetFilters();
     document.getElementById("inputfile").value = "";
     // First options on these select boxes are placeholders. We'll restore them.
@@ -284,12 +287,13 @@ function showNewQueuedJob(filter, inputFile, format, hg){
 
 }
 
-function trimFilename(longFilename){
-    let shortFilename = longFilename.split("\\")[-1];
+function trimFilename(inputFile){
+    const longFilename = inputFile.name;
+    const shortFilename = longFilename.split("\\").pop();
     if (shortFilename){
         return shortFilename;
     }
-    return longFilename;
+    return inputFile;
 }
 
 function submitAll(){
@@ -384,13 +388,12 @@ function addStatusEntry(inputFileName, id, jobIndex) {
     statusAreaNode.appendChild(statusRow);
     statusRow.setAttribute("id", id);
     showInitialStatus(statusRow, inputFileName, jobIndex);
-    console.log("Very first time adding status for: " + inputFileName);
 }
 
 function showInitialStatus(statusRow, inputFileName, jobIndex) {
     // Include the file name, reference genome, mask filter, output format, and restore link
     const inputFileCell = document.createElement("td");
-    inputFileCell.innerText = inputFileName;
+    inputFileCell.innerText = trimFilename(inputFileName);
     statusRow.appendChild(inputFileCell);
 
     const refGenomeCell = document.createElement("td");
@@ -533,6 +536,7 @@ function getOutputFormat() {
 
 function getInputFile(){
     return document.getElementById("inputfile").files[0];
+
 }
 
 function getHg() {
