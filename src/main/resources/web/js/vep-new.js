@@ -193,8 +193,6 @@ function setSaveJobMessage(errorMessage){
 }
 
 function saveJob(){
-    const formData = new FormData();
-
     const filter = codeMirror.getValue();
     if (filter == ""){
         setSaveJobMessage("Select a filter to proceed.");
@@ -265,26 +263,36 @@ function clearInputs(){
 
 function showNewQueuedJob(filter, inputFile, format, hg){
     const newRow = document.createElement("tr");
+    setUpRow(newRow, false);
 
-    const inputFileTd = document.createElement("td");3
-    inputFileTd.innerText = trimFilename(inputFile);
-    newRow.append(inputFileTd);
-
-    const hgTd = document.createElement("td");
-    hgTd.innerText = hg;
-    newRow.append(hgTd);
-
-    const maskTd = document.createElement("td");
-    maskTd.innerText = filter;
-    newRow.append(maskTd);
-
-    const formatTd = document.createElement("td");
-    formatTd.innerText = format;
-    newRow.append(formatTd);
+    displayInputFile(newRow, trimFilename(inputFile));
+    displayRefGenome(newRow, hg);
+    displayFilterName(newRow, filter);
+    displayOutputFormat(newRow, format);
 
     const submitTableBody = document.getElementById("submit-table-body");
     submitTableBody.append(newRow);
 
+}
+
+function displayInputFile(row, inputFilename){
+    const inputFileCell = row.getElementsByClassName("input-file-cell")[0];
+    inputFileCell.innerText = inputFilename;
+}
+
+function displayRefGenome(row, refGenome){
+    const refGenomeCell = row.getElementsByClassName("ref-genome-cell")[0];
+    refGenomeCell.innerText = refGenome;
+}
+
+function displayFilterName(row, filterName){
+    const filterNameCell = row.getElementsByClassName("filter-name-cell")[0];
+    filterNameCell.innerText = filterName;
+}
+
+function displayOutputFormat(row, outputFormat){
+    const outputFormatCell = row.getElementsByClassName("output-format-cell")[0];
+    outputFormatCell.innerText = outputFormat;
 }
 
 function trimFilename(inputFile){
@@ -422,17 +430,10 @@ function showInitialStatus(statusRow, inputFileName, jobIndex) {
     // Include the file name, reference genome, mask filter, output format, and restore link
     setUpRow(statusRow, true);
 
-    const inputFileCell = statusRow.getElementsByClassName("input-file-cell")[0];
-    inputFileCell.innerText = trimFilename(inputFileName);
-
-    const refGenomeCell = statusRow.getElementsByClassName("ref-genome-cell")[0];
-    refGenomeCell.innerText = refGenomes[jobIndex];
-
-    const filterNameCell = statusRow.getElementsByClassName("filter-name-cell")[0];
-    filterNameCell.innerText = filterNames[jobIndex];
-
-    const outputFormatCell = statusRow.getElementsByClassName("output-format-cell")[0];
-    outputFormatCell.innerText = outputFormats[jobIndex];
+    displayInputFile(statusRow, trimFilename(inputFileName));
+    displayRefGenome(statusRow, refGenomes[jobIndex]);
+    displayFilterName(statusRow, filterNames[jobIndex]);
+    displayOutputFormat(statusRow, outputFormats[jobIndex]);
 
     const outputFileCell = statusRow.getElementsByClassName("output-file-cell")[0];
     outputFileCell.innerText = "Processing...";
