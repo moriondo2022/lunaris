@@ -438,7 +438,11 @@ function soManyErrors(nSnags) {
 
 function showStatus(id) {
     const statusRow = document.getElementById(id);
-    const outputFileCell = statusRow.getElementsByClassName("output-file")[0];
+    let outputFileCell = statusRow.getElementsByClassName("output-file")[0];
+    if (!outputFileCell){
+      outputFileCell = document.createElement("td");
+      statusRow.appendChild(outputFileCell);
+    }
     const inputFileName = lunarisVariantPredictor.inputFileNames[id];
     const status = lunarisVariantPredictor.statuses[id];
     if (status) {
