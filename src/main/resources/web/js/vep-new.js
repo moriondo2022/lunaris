@@ -388,32 +388,57 @@ function addStatusEntry(inputFileName, id, jobIndex) {
     showInitialStatus(statusRow, inputFileName, jobIndex);
 }
 
-function showInitialStatus(statusRow, inputFileName, jobIndex) {
-    // Include the file name, reference genome, mask filter, output format, and restore link
+function setUpRow(row, isStatus){
     const inputFileCell = document.createElement("td");
-    inputFileCell.innerText = trimFilename(inputFileName);
-    statusRow.appendChild(inputFileCell);
+    inputFileCell.setAttribute("class", "input-file-cell");
 
     const refGenomeCell = document.createElement("td");
-    refGenomeCell.innerText = refGenomes[jobIndex];
-    statusRow.appendChild(refGenomeCell);
+    refGenomeCell.setAttribute("class", "ref-genome-cell");
 
     const filterNameCell = document.createElement("td");
-    filterNameCell.innerText = filterNames[jobIndex];
-    statusRow.appendChild(filterNameCell);
+    filterNameCell.setAttribute("class", "filter-name-cell");
 
     const outputFormatCell = document.createElement("td");
+    outputFormatCell.setAttribute("class", "output-format-cell");
+
+    row.appendChild(inputFileCell);
+    row.appendChild(refGenomeCell);
+    row.appendChild(filterNameCell);
+    row.appendChild(outputFormatCell);
+
+    if (isStatus){
+        const outputFileCell = document.createElement("td");
+        outputFileCell.setAttribute("class", "output-file-cell");
+
+        const restoreJobCell = document.createElement("td");
+        restoreJobCell.setAttribute("class", "restore-job-cell");
+
+        row.appendChild(outputFileCell);
+        row.appendChild(restoreJobCell);
+    }
+}
+
+function showInitialStatus(statusRow, inputFileName, jobIndex) {
+    // Include the file name, reference genome, mask filter, output format, and restore link
+    setUpRow(statusRow, true);
+
+    const inputFileCell = statusRow.getElementsByClassName("input-file-cell")[0];
+    inputFileCell.innerText = trimFilename(inputFileName);
+
+    const refGenomeCell = statusRow.getElementsByClassName("ref-genome-cell")[0];
+    refGenomeCell.innerText = refGenomes[jobIndex];
+
+    const filterNameCell = statusRow.getElementsByClassName("filter-name-cell")[0];
+    filterNameCell.innerText = filterNames[jobIndex];
+
+    const outputFormatCell = statusRow.getElementsByClassName("output-format-cell")[0];
     outputFormatCell.innerText = outputFormats[jobIndex];
-    statusRow.appendChild(outputFormatCell);
 
-    const outputFileCell = document.createElement("td");
+    const outputFileCell = statusRow.getElementsByClassName("output-file-cell")[0];
     outputFileCell.innerText = "Processing...";
-    outputFileCell.setAttribute("class", "output-file");
-    statusRow.appendChild(outputFileCell);
 
-    const restoreJobCell = document.createElement("td");
+    const restoreJobCell = statusRow.getElementsByClassName("restore-job-cell")[0];
     restoreJobCell.innerHTML = "<a>Restore</a>";
-    statusRow.appendChild(restoreJobCell);
 }
 
 function getStatus(id) {
@@ -438,7 +463,7 @@ function soManyErrors(nSnags) {
 
 function showStatus(id) {
     const statusRow = document.getElementById(id);
-    const outputFileCell = statusRow.getElementsByClassName("output-file")[0];
+    const outputFileCell = statusRow.getElementsByClassName("output-file-cell")[0];
     const inputFileName = lunarisVariantPredictor.inputFileNames[id];
     const status = lunarisVariantPredictor.statuses[id];
     if (status) {
