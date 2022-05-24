@@ -429,7 +429,7 @@ function showInitialStatus(statusRow, inputFileName="name", refGenome="genome", 
     setUpRow(statusRow, true);
 
     console.log("Should be displaying input file " + inputFileName);
-    displayInputFile(statusRow, trimFilename(inputFileName));
+    displayInputFile(statusRow, inputFileName);
     displayRefGenome(statusRow, refGenome);
     displayFilterName(statusRow, filterName);
     displayOutputFormat(statusRow, outputFormat);
