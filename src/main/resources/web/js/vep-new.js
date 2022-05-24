@@ -130,8 +130,7 @@ function setSessionMsg(msg) {
 
 function setEmptySubmissionArea() {
     const submissionArea = document.getElementById("submission_area");
-    submissionArea.innerHTML =
-        "<span id=\"statusUpdatesPlaceholder\">(Submission status updates will appear here)</span>";
+    submissionArea.innerHTML = "";
 }
 
 setInterval(updatePendingStatuses, 300);
@@ -342,7 +341,7 @@ function submitAll(){
                 return response.text();
             })
             .then((id) => {
-                addStatusEntry(inputFile, id, i);
+                addStatusEntry(inputFile, id, refGenomes[i], filterNames[i], outputFormats[i]);
                 getStatus(id);
             }).catch(showCouldNotSubmit);
     }
@@ -382,18 +381,14 @@ function showCouldNotSubmit(message) {
     console.log(message);
 }
 
-function addStatusEntry(inputFileName, id, jobIndex) {
+function addStatusEntry(inputFileName, id, refGenome="genome", filterName="filter", outputFormat="format") {
     lunarisVariantPredictor.inputFileNames[id] = inputFileName;
     lunarisVariantPredictor.idsPending.push(id);
     const statusRow = document.createElement("tr");
     const statusAreaNode = getSubmissionAreaNode();
-    const placeholder = document.getElementById("statusUpdatesPlaceholder");
-    if(placeholder) {
-        placeholder.innerText = "";
-    }
     statusAreaNode.appendChild(statusRow);
     statusRow.setAttribute("id", id);
-    showInitialStatus(statusRow, inputFileName, jobIndex);
+    showInitialStatus(statusRow, inputFileName, refGenome, filterName, outputFormat);
 }
 
 function setUpRow(row, isStatus){
@@ -426,14 +421,14 @@ function setUpRow(row, isStatus){
     }
 }
 
-function showInitialStatus(statusRow, inputFileName, jobIndex) {
+function showInitialStatus(statusRow, inputFileName="name", refGenome="genome", filterName="filter", outputFormat="format") {
     // Include the file name, reference genome, mask filter, output format, and restore link
     setUpRow(statusRow, true);
 
     displayInputFile(statusRow, trimFilename(inputFileName));
-    displayRefGenome(statusRow, refGenomes[jobIndex]);
-    displayFilterName(statusRow, filterNames[jobIndex]);
-    displayOutputFormat(statusRow, outputFormats[jobIndex]);
+    displayRefGenome(statusRow, refGenome);
+    displayFilterName(statusRow, filterName);
+    displayOutputFormat(statusRow, outputFormat);
 
     const outputFileCell = statusRow.getElementsByClassName("output-file-cell")[0];
     outputFileCell.innerText = "Processing...";
