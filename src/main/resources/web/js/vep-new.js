@@ -97,9 +97,11 @@ function loadSession(sessionId) {
                 }
                 setEmptySubmissionArea();
                 session.jobs.forEach(job => {
+                    console.log("Adding job " + job.id);
                     const id = job.id;
-                    const inputFileName = trimFilename(job.inputFile);
-                    console.log("Adding job " + job.id + " " + inputFileName);
+                    const path = job.inputFile;
+                    const inputFileName = path.substring(path.lastIndexOf("/") + 1);
+                    console.log(inputFileName);
                     addStatusEntry(inputFileName, id);
                 });
                 setSessionMsg("Loading session " + sessionId + ".");
@@ -460,8 +462,8 @@ function soManyErrors(nSnags) {
 function showStatus(id) {
     const statusRow = document.getElementById(id);
     const outputFileCell = statusRow.getElementsByClassName("output-file-cell")[0];
-    let inputFileName = lunarisVariantPredictor.inputFileNames[id];
-    let status = lunarisVariantPredictor.statuses[id];
+    const inputFileName = lunarisVariantPredictor.inputFileNames[id];
+    const status = lunarisVariantPredictor.statuses[id];
     if (status) {
         if (status.succeeded) {
             console.log("Success for " + id);
