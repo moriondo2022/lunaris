@@ -97,6 +97,7 @@ function loadSession(sessionId) {
                 }
                 setEmptySubmissionArea();
                 session.jobs.forEach(job => {
+                    console.log(job);
                     const id = job.id;
                     const path = job.inputFile;
                     const inputFileName = path.substring(path.lastIndexOf("/") + 1);
@@ -442,7 +443,6 @@ function getStatus(id) {
         .then((status) => {
             lunarisVariantPredictor.statuses[id] = status;
             showStatus(id);
-            console.log("Getting status for " + id);
         });
 }
 
@@ -463,7 +463,6 @@ function showStatus(id) {
     const status = lunarisVariantPredictor.statuses[id];
     if (status) {
         if (status.succeeded) {
-            console.log("Success for " + id);
             const linkNode = document.createElement("a");
             const outputFile = id + ".tsv"
             linkNode.setAttribute("href", "/lunaris/predictor/results/" + outputFile);
@@ -503,7 +502,6 @@ function updatePendingStatuses() {
     const idsPendingNew = [];
     let i = 0;
     const idsPending = lunarisVariantPredictor.idsPending;
-    console.log(idsPending.length + " IDs remaining");
     while (i < idsPending.length) {
         const id = idsPending[i];
         getStatus(id);
