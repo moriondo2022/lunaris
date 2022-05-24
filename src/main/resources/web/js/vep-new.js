@@ -279,6 +279,7 @@ function showNewQueuedJob(filter, inputFile, format, hg){
 function displayInputFile(row, inputFilename){
     const inputFileCell = row.getElementsByClassName("input-file-cell")[0];
     inputFileCell.innerText = inputFilename;
+    console.log("If you can read this we displayed the input filename " + inputFilename);
 }
 
 function displayRefGenome(row, refGenome){
@@ -427,6 +428,7 @@ function showInitialStatus(statusRow, inputFileName="name", refGenome="genome", 
     // Include the file name, reference genome, mask filter, output format, and restore link
     setUpRow(statusRow, true);
 
+    console.log("Should be displaying input file " + inputFileName);
     displayInputFile(statusRow, trimFilename(inputFileName));
     displayRefGenome(statusRow, refGenome);
     displayFilterName(statusRow, filterName);
@@ -509,7 +511,6 @@ function updatePendingStatuses() {
     while (i < idsPending.length) {
         const id = idsPending[i];
         getStatus(id);
-        //showStatus(id);
         const status = lunarisVariantPredictor.statuses[id];
         if (!status.completed) {
             idsPendingNew.push(id);
