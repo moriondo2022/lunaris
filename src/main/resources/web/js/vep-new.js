@@ -97,11 +97,9 @@ function loadSession(sessionId) {
                 }
                 setEmptySubmissionArea();
                 session.jobs.forEach(job => {
-                    console.log("Adding job " + job.id);
                     const id = job.id;
                     const path = job.inputFile;
                     const inputFileName = path.substring(path.lastIndexOf("/") + 1);
-                    console.log(inputFileName);
                     addStatusEntry(inputFileName, id);
                 });
                 setSessionMsg("Loading session " + sessionId + ".");
@@ -279,7 +277,6 @@ function showNewQueuedJob(filter, inputFile, format, hg){
 function displayInputFile(row, inputFilename){
     const inputFileCell = row.getElementsByClassName("input-file-cell")[0];
     inputFileCell.innerText = inputFilename;
-    console.log("If you can read this we displayed the input filename " + inputFilename);
 }
 
 function displayRefGenome(row, refGenome){
@@ -427,8 +424,6 @@ function setUpRow(row, isStatus){
 function showInitialStatus(statusRow, inputFileName="name", refGenome="genome", filterName="filter", outputFormat="format") {
     // Include the file name, reference genome, mask filter, output format, and restore link
     setUpRow(statusRow, true);
-
-    console.log("Should be displaying input file " + inputFileName);
     displayInputFile(statusRow, inputFileName);
     displayRefGenome(statusRow, refGenome);
     displayFilterName(statusRow, filterName);
@@ -508,6 +503,7 @@ function updatePendingStatuses() {
     const idsPendingNew = [];
     let i = 0;
     const idsPending = lunarisVariantPredictor.idsPending;
+    console.log(idsPending.length + " IDs remaining");
     while (i < idsPending.length) {
         const id = idsPending[i];
         getStatus(id);
