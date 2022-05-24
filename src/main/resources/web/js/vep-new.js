@@ -97,6 +97,7 @@ function loadSession(sessionId) {
                 }
                 setEmptySubmissionArea();
                 session.jobs.forEach(job => {
+                    console.log("Adding job " + job.id);
                     const id = job.id;
                     const path = job.inputFile;
                     const inputFileName = path.substring(path.lastIndexOf("/") + 1);
